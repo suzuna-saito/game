@@ -1,0 +1,16 @@
+﻿  pch.cpp
+C:\Users\suzun\Desktop\game01\Game\Game\Math.h(56,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\suzun\Desktop\game01\Game\Game\Math.h(101,14): warning C4244: 'return': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\suzun\Desktop\game01\Game\Game\Math.h(1100,13): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\suzun\Desktop\game01\Game\Game\Math.h(1117,13): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\suzun\Desktop\game01\Game\Game\Math.h(1127,13): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\suzun\Desktop\game01\Game\Game\Math.h(1137,13): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  FPS.cpp
+  Game.cpp
+  InputSystem.cpp
+  main.cpp
+  Math.cpp
+  Renderer.cpp
+  SceneBase.cpp
+  コードを生成中...
+C:\Users\suzun\Desktop\game01\Game\Game\main.cpp(6): error C4716: 'SDL_main': 値を返さなければいけません
