@@ -1,9 +1,9 @@
 #pragma once
 
-#define RENDERER Renderer::GetInstance();
+#define RENDERER Renderer::mRenderer
 
 /*
-描画進行を行うクラス
+描画進行を行うクラス(シングルトン)
 */
 class Renderer
 {
@@ -17,23 +17,28 @@ public:
 	// 初期化処理
 	// return true : 成功、false : 失敗
 	bool Initialize();
-	// 終了処理
-	void Termination();
 
 	// 描画処理
 	void Draw();
 
-private:
+	// ロードしたデータの解放
+	void UnloadData();
+
+	// 終了処理
+	void Termination();
+
 	//自身のインスタンス
 	static Renderer* mRenderer;
 
+private:
+	// コンストラクタ、デストラクタの隠蔽
+	Renderer();
+	~Renderer() {};
+
+	// レンダラーの状態を含む構造体
+	SDL_Renderer* mSdlRenderer;
+
 	//ゲッターセッター
 public:
-	/// <summary>
-	/// インスタンスを取得する
-	/// </summary>
-	/// <returns>Rendererクラスのインスタンス</returns>
-	static Renderer* GetInstance() { return mRenderer; }
-
 };
 

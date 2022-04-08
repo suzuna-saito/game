@@ -11,14 +11,14 @@ bool InputSystem::Initialize()
 	// 1フレーム前の入力状態を初期化
 	memset(mState.m_keyboard.mPrevState, 0, SDL_NUM_SCANCODES);
 
-	// @@@
-	// パッドの設定ファイル　gamecontrollerdb.txt　の読み込みと問題が無いかのチェック
-	int iNumOfControllers = SDL_GameControllerAddMappingsFromFile("Assets/Config/GameControllerdb.txt");
-	if (iNumOfControllers == -1)
-	{
-		SDL_LogWarn(SDL_LOG_CATEGORY_INPUT, "Error loading database [%s]", SDL_GetError());
-		return false;
-	}
+	//// @@@
+	//// パッドの設定ファイル　gamecontrollerdb.txt　の読み込みと問題が無いかのチェック
+	//int iNumOfControllers = SDL_GameControllerAddMappingsFromFile("Assets/Config/GameControllerdb.txt");
+	//if (iNumOfControllers == -1)
+	//{
+	//	SDL_LogWarn(SDL_LOG_CATEGORY_INPUT, "Error loading database [%s]", SDL_GetError());
+	//	return false;
+	//}
 
 	// @@@
 	// コントローラーを開く

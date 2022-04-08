@@ -1,11 +1,14 @@
 #include "pch.h"
 
+SDL_Window* Game::mWindow = nullptr;
+
 Game::Game()
-	: mIsRunningFlag(false)
+	: mIsRunningFlag(true)
 	, mFps(nullptr)
 	, mInputSystem(nullptr)
-	, mWindow(nullptr)
 	, mContext(nullptr)
+	, mNowScene(NULL)
+	, mTmpScene(NULL)
 	, MWidth(1920)
 	, MHeight(1080)
 {
@@ -19,6 +22,14 @@ bool Game::Initialize()
 		SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC) != 0)
 	{
 		SDL_Log("SDLを初期化できません : %s", SDL_GetError());
+		return false;
+	}
+
+	//入力管理クラスの初期化
+	mInputSystem = new InputSystem();
+	if (!mInputSystem->Initialize())
+	{
+		SDL_Log("インプットシステムの初期化に失敗しました");
 		return false;
 	}
 
@@ -47,6 +58,18 @@ bool Game::Initialize()
 
 	// 一部のプラットフォームで出る無害なエラーコードをクリアする
 	glGetError();
+
+	//レンダラーの初期化
+	Renderer::CreateInstance();
+	if (!RENDERER->Initialize())
+	{
+		SDL_Log("レンダラーの初期化に失敗しました");
+		Renderer::DeleteInstance();
+		return false;
+	}
+
+	// FPS管理クラスの初期化
+	mFps = new FPS();
 
 	return true;
 }
@@ -122,8 +145,10 @@ void Game::ProcessInput()
 	// 現在の状態が格納された配列
 	const InputState& state = mInputSystem->GetState();
 
+	//@@@ test eEndになったら
 	// ESCキーか、@@@コントローラーの終了が押されたら
-	if (state.m_keyboard.GetKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::eReleased)
+	if (state.m_keyboard.GetKeyState(SDL_SCANCODE_ESCAPE) == ButtonState::eReleased ||
+		SceneBase::mIsScene == SceneBase::Scene::eEnd)
 	{
 		mIsRunningFlag = false;
 	}

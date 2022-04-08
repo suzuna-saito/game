@@ -7,6 +7,9 @@ int main(int argc, char** argv)
 	// ゲームクラスの初期化が成功したか
 	bool success = game.Initialize();
 	
+	// 最初のシーンを設定
+	game.SetFirstScene(new Title(SceneBase::Scene::eTitle));
+
 	if (success)
 	{
 		game.GameLoop();

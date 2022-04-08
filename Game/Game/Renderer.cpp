@@ -1,17 +1,65 @@
 #include "pch.h"
 
-//自分のインスタンスの初期化
+// 自身のインスタンスの初期化
 Renderer* Renderer::mRenderer = nullptr;
+
+Renderer::Renderer()
+	: mSdlRenderer(nullptr)
+{
+}
+
+void Renderer::CreateInstance()
+{
+	if (mRenderer == nullptr)
+	{
+		// インスタンスを生成
+		mRenderer = new Renderer();
+	}
+}
+
+void Renderer::DeleteInstance()
+{
+	if (mRenderer != nullptr)
+	{
+		// 削除
+		delete mRenderer;
+		mRenderer = nullptr;
+	}
+}
 
 bool Renderer::Initialize()
 {
-	return false;
-}
-
-void Renderer::Termination()
-{
+	// SDL_Rendererを作る
+	// 描画対象となるウィンドウ、-1、
+	mSdlRenderer = SDL_CreateRenderer(Game::mWindow, -1,
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (!mSdlRenderer)
+	{
+		printf("SDLRendererの作成に失敗 : %s", SDL_GetError());
+		return false;
+	}
+	return true;
 }
 
 void Renderer::Draw()
+{
+	//@@@(設定しなかったら黒になる)
+	// クリアカラーを好きなように設定
+	glClearColor(0.2f, 0.0f, 0.4f, 0.5f);
+	// カラーバッファをクリア
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	// @@@
+	// シーンを描画
+
+	// バッファを交換、これでシーンが表示される
+	SDL_GL_SwapWindow(Game::mWindow);
+}
+
+void Renderer::UnloadData()
+{
+}
+
+void Renderer::Termination()
 {
 }

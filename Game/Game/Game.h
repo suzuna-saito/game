@@ -19,6 +19,9 @@ public:
 	// 終了処理
 	void Termination();
 
+	// SDLが作るウィンドウ
+	static SDL_Window* mWindow;
+
 private:
 	// 入力関連の処理
 	void ProcessInput();
@@ -31,12 +34,12 @@ private:
 
 	// コアOpenGLプロファイル設定
 	void OpenGLSetup();
-	// SDLが作るウィンドウ
-	SDL_Window* mWindow;
+
 	// ウィンドウの横幅
 	const int MWidth;
 	// ウィンドウの縦幅
 	const int MHeight;
+
 	// コンテクスト
 	SDL_GLContext mContext;
 

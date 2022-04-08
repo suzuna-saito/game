@@ -26,6 +26,7 @@ using namespace std;
 
 // Scene
 #include "SceneBase.h"
+#include "Title.h"
 
 // game
 #include "Game.h"
