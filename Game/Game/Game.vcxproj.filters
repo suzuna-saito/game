@@ -16,6 +16,15 @@
     <Filter Include="InputSystem">
       <UniqueIdentifier>{f809f4ba-a886-457c-8bc3-99513b02bee4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{e68284fa-7a13-4bde-a926-2d63756f75d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{124519e3-7bb0-430f-83e6-77addc2e33fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ObjectManager">
+      <UniqueIdentifier>{477e5237-0f06-444e-9dc1-e531b4af6e20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Renderer.cpp">
@@ -39,6 +48,15 @@
     <ClCompile Include="Title.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>ObjectManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -60,6 +78,15 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Title.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>ObjectManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -177,11 +177,14 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="FPS.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -193,10 +196,13 @@
     <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component.h" />
     <ClInclude Include="FPS.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Actor.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SceneBase.h" />

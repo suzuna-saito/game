@@ -71,6 +71,9 @@ bool Game::Initialize()
 	// FPS管理クラスの初期化
 	mFps = new FPS();
 
+	// オブジェクト管理クラスの初期化
+	ObjectManager::CreateInstance();
+
 	return true;
 }
 
@@ -111,8 +114,11 @@ void Game::Termination()
 {
 	// データのアンロード
 	UnloadData();
+
 	// @@@
 	// スタティッククラスの解放処理
+	ObjectManager::DeleteInstance();
+	Renderer::DeleteInstance();
 
 	// クラスの解放処理
 	delete mFps;
@@ -153,14 +159,16 @@ void Game::ProcessInput()
 		mIsRunningFlag = false;
 	}
 
-	// @@@ 入力状態の更新
+	// 入力状態の更新
+	OBJECT_MANAGER->ProcessInput(state);
 }
 
 void Game::UpdateGame()
 {
 	float deltaTime = mFps->GetDeltaTime();
 
-	// @@@ ゲームの更新処理
+	// ゲームの更新処理
+	OBJECT_MANAGER->UpdateObject(deltaTime);
 }
 
 void Game::GenerateOutput()
@@ -170,6 +178,7 @@ void Game::GenerateOutput()
 
 void Game::UnloadData()
 {
+	//@@@
 }
 
 void Game::OpenGLSetup()

@@ -11,6 +11,7 @@ using namespace std;
 #include <glew.h>
 #include <limits>
 #include <SDL.h>
+#include <vector>
 
 // Math
 #include "Math.h"
@@ -21,12 +22,21 @@ using namespace std;
 // InputSystem
 #include "InputSystem.h"
 
+// Component
+#include "Component.h"
+
 // Renderer
 #include "Renderer.h"
+
+// Actor
+#include "Actor.h"
 
 // Scene
 #include "SceneBase.h"
 #include "Title.h"
+
+// ObjectManager
+#include "ObjectManager.h"
 
 // game
 #include "Game.h"
