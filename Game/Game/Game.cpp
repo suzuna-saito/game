@@ -179,6 +179,11 @@ void Game::GenerateOutput()
 void Game::UnloadData()
 {
 	//@@@
+	// •`‰æ‚µ‚Ä‚¢‚éƒf[ƒ^‚ğíœ
+	if (RENDERER != nullptr)
+	{
+
+	}
 }
 
 void Game::OpenGLSetup()

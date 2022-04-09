@@ -25,6 +25,12 @@
     <Filter Include="ObjectManager">
       <UniqueIdentifier>{477e5237-0f06-444e-9dc1-e531b4af6e20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MapCreate">
+      <UniqueIdentifier>{00501761-b870-4d99-b6ae-a84d3793c931}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RapidJson">
+      <UniqueIdentifier>{c0bdfaee-b12e-45ca-9c79-203c842ddf52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Renderer.cpp">
@@ -57,6 +63,12 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>ObjectManager</Filter>
     </ClCompile>
+    <ClCompile Include="MapCreate.cpp">
+      <Filter>MapCreate</Filter>
+    </ClCompile>
+    <ClCompile Include="RapidJsonHelper.cpp">
+      <Filter>RapidJson</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -87,6 +99,12 @@
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MapCreate.h">
+      <Filter>MapCreate</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidJsonHelper.h">
+      <Filter>RapidJson</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

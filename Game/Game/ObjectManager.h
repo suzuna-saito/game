@@ -40,7 +40,7 @@ public:
 	/// シーンごとの全てのオブジェクトの削除
 	/// </summary>
 	/// <param name="_scene">削除するシーンのタグ</param>
-	void RemoveSceneObject(SceneBase::Scene _scene);
+	void RemoveSceneObject();
 
 	// 自身のインスタンス
 	static ObjectManager* mManager;

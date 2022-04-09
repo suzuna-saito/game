@@ -61,7 +61,7 @@ void ObjectManager::RemoveObject(Actor* _object)
 	}
 }
 
-void ObjectManager::RemoveSceneObject(SceneBase::Scene _scene)
+void ObjectManager::RemoveSceneObject()
 {
 	// mActorObjects‚Ì—v‘f‚ª0‚¶‚á‚È‚©‚Á‚½‚ç
 	while (!mActorObjects.empty())

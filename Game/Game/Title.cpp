@@ -12,6 +12,8 @@ Title::Title(const Scene& _nowScene)
 
 Title::~Title()
 {
+	// 現在のシーンで生成された全てのオブジェクトの削除
+	OBJECT_MANAGER->RemoveSceneObject();
 }
 
 void Title::Input(const InputState& _state)

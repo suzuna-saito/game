@@ -8,8 +8,10 @@
 using namespace std;
 
 // ŠO•”ˆË‘¶
+#include <document.h>
+#include <fstream>
 #include <glew.h>
-#include <limits>
+#include <sstream>
 #include <SDL.h>
 #include <vector>
 
@@ -34,6 +36,12 @@ using namespace std;
 // Scene
 #include "SceneBase.h"
 #include "Title.h"
+
+// RapidJson
+#include "RapidJsonHelper.h"
+
+// Map
+#include "MapCreate.h"
 
 // ObjectManager
 #include "ObjectManager.h"
