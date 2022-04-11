@@ -15,6 +15,10 @@ public:
 	/// <returns>true : ファイルを開けた , false : ファイルが開けなかった</returns>
 	bool OpenFile();
 
+	// @@@
+	// 床を生成する
+	void CreateGround();
+
 private:
 	/// <summary>
 	/// データの読み込み処理
@@ -32,5 +36,17 @@ private:
 	/// <param name="_layerName">該当レイヤー名</param>
 	/// <returns>-1 : なかった</returns>
 	int FindLayerIndex(rapidjson::GenericArray<false, rapidjson::Value>& _layer, string& _layerName);
+
+	// @@@
+	// マップデータ
+	vector<vector<int>> mMapDate;
+
+	// マップデータサイズ(x,y)
+	Vector2 mMapSize;
+	// オブジェクトごとの距離(x,y,z)
+	Vector3 mObjDistance;
+
+	// スケール
+	const float MScale;
 };
 
