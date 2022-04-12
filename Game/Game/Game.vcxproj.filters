@@ -4,17 +4,8 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{2d50ea11-d4cf-4257-bdf4-7faff9a32e74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FPS">
-      <UniqueIdentifier>{a6c389da-81fd-450b-bf97-32aad9774c18}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{e7c46c58-deeb-4674-a8c3-5900b781aaa2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{eeb37bfd-86c8-469a-a2e3-4eee589cf239}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="InputSystem">
-      <UniqueIdentifier>{f809f4ba-a886-457c-8bc3-99513b02bee4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Component">
       <UniqueIdentifier>{e68284fa-7a13-4bde-a926-2d63756f75d4}</UniqueIdentifier>
@@ -28,7 +19,25 @@
     <Filter Include="MapCreate">
       <UniqueIdentifier>{00501761-b870-4d99-b6ae-a84d3793c931}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RapidJson">
+    <Filter Include="Actor\Ground">
+      <UniqueIdentifier>{010d4fa3-fdd2-4b9b-8e7f-522d5e9d0dca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Vertex">
+      <UniqueIdentifier>{d1b14a7a-c728-4a4e-ac79-7931d2335662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{a441c2e5-64e8-438b-91b5-8983aae8bdf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Math">
+      <UniqueIdentifier>{e7c46c58-deeb-4674-a8c3-5900b781aaa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\InputSystem">
+      <UniqueIdentifier>{f809f4ba-a886-457c-8bc3-99513b02bee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\FPS">
+      <UniqueIdentifier>{a6c389da-81fd-450b-bf97-32aad9774c18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\RapidJson">
       <UniqueIdentifier>{c0bdfaee-b12e-45ca-9c79-203c842ddf52}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -37,16 +46,16 @@
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="FPS.cpp">
-      <Filter>FPS</Filter>
+      <Filter>System\FPS</Filter>
     </ClCompile>
     <ClCompile Include="Math.cpp">
-      <Filter>Math</Filter>
+      <Filter>System\Math</Filter>
     </ClCompile>
     <ClCompile Include="SceneBase.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="InputSystem.cpp">
-      <Filter>InputSystem</Filter>
+      <Filter>System\InputSystem</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
@@ -67,7 +76,13 @@
       <Filter>MapCreate</Filter>
     </ClCompile>
     <ClCompile Include="RapidJsonHelper.cpp">
-      <Filter>RapidJson</Filter>
+      <Filter>System\RapidJson</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Actor\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexArray.cpp">
+      <Filter>Renderer\Vertex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -75,16 +90,16 @@
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="FPS.h">
-      <Filter>FPS</Filter>
+      <Filter>System\FPS</Filter>
     </ClInclude>
     <ClInclude Include="Math.h">
-      <Filter>Math</Filter>
+      <Filter>System\Math</Filter>
     </ClInclude>
     <ClInclude Include="SceneBase.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="InputSystem.h">
-      <Filter>InputSystem</Filter>
+      <Filter>System\InputSystem</Filter>
     </ClInclude>
     <ClInclude Include="Game.h" />
     <ClInclude Include="pch.h" />
@@ -104,7 +119,13 @@
       <Filter>MapCreate</Filter>
     </ClInclude>
     <ClInclude Include="RapidJsonHelper.h">
-      <Filter>RapidJson</Filter>
+      <Filter>System\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Actor\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexArray.h">
+      <Filter>Renderer\Vertex</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

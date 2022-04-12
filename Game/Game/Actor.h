@@ -20,6 +20,12 @@ public:
 		eDead,
 	};
 
+	// アクターの種類判別タグ
+	enum class Tag :unsigned char
+	{
+		eGround,
+	};
+
 	// コンストラクタ
 	Actor();
 	// デストラクタ
@@ -55,9 +61,14 @@ public:
 	/// <param name="_deltaTime">最後のフレームを完了するのに要した時間</param>
 	virtual void UpdateActor(float _deltaTime) = 0;
 
-private:
+protected:
 	// アクターの状態
 	State mState;
+	// アクターのタグ
+	Tag mTag;
+
+	// Transform
+
 
 	// アクターが持つコンポーネント
 	vector<Component*>mComponents;

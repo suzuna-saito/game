@@ -181,6 +181,7 @@
     <ClCompile Include="FPS.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapCreate.cpp" />
@@ -201,12 +202,14 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h" />
     <ClInclude Include="FPS.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="MapCreate.h" />
     <ClInclude Include="Math.h" />
@@ -221,6 +224,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="VertexArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

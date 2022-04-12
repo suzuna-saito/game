@@ -1,5 +1,9 @@
 #pragma once
 
+/*
+json関連
+*/
+
 /// <summary>
 /// jsonファイルのオープン
 /// </summary>

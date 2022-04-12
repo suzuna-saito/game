@@ -1,6 +1,8 @@
 #pragma once
 
-// マップを作成するクラス
+/*
+マップを作成するクラス
+*/
 class MapCreate
 {
 public:

@@ -15,30 +15,26 @@ using namespace std;
 #include <SDL.h>
 #include <vector>
 
-// Math
+// System
 #include "Math.h"
-
-// FPS
 #include "FPS.h"
-
-// InputSystem
 #include "InputSystem.h"
+#include "RapidJsonHelper.h"
 
 // Component
 #include "Component.h"
 
 // Renderer
 #include "Renderer.h"
+#include "VertexArray.h"
 
 // Actor
 #include "Actor.h"
+#include "Ground.h"
 
 // Scene
 #include "SceneBase.h"
 #include "Title.h"
-
-// RapidJson
-#include "RapidJsonHelper.h"
 
 // Map
 #include "MapCreate.h"

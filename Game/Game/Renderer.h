@@ -38,6 +38,9 @@ private:
 	// レンダラーの状態を含む構造体
 	SDL_Renderer* mSdlRenderer;
 
+	// @@@@
+	// スプライト
+
 	//ゲッターセッター
 public:
 };

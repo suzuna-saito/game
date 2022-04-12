@@ -32,3 +32,5 @@
 *.app
 Game/.vs
 *.txt
+Game/Debug
+Game/Game/Debug
