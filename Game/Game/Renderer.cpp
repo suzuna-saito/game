@@ -8,6 +8,35 @@ Renderer::Renderer()
 {
 }
 
+Texture* Renderer::GetTexture(const string& _fileName)
+{
+	Texture* texture = nullptr;
+	// すでに作成されていないか調べる
+	auto itr = mTextures.find(_fileName);
+	if (itr != mTextures.end())
+	{
+		texture = itr->second;
+	}
+	// 作成済みでない場合、新しくテクスチャを作成
+	else
+	{
+		texture = new Texture();
+		if (texture->Load(_fileName))
+		{
+			// mTexturesに要素を構築
+			mTextures.emplace(_fileName, texture);
+		}
+		// テクスチャの読み込みが出来なかったら
+		else
+		{
+			delete texture;
+			texture = nullptr;
+		}
+	}
+
+	return texture;
+}
+
 void Renderer::CreateInstance()
 {
 	if (mRenderer == nullptr)
@@ -62,4 +91,6 @@ void Renderer::UnloadData()
 
 void Renderer::Termination()
 {
+	SDL_DestroyRenderer(mSdlRenderer);
+	SDL_DestroyWindow(Game::mWindow);
 }

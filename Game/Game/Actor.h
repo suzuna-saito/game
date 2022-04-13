@@ -23,11 +23,16 @@ public:
 	// アクターの種類判別タグ
 	enum class Tag :unsigned char
 	{
+		// 床
 		eGround,
 	};
 
-	// コンストラクタ
-	Actor();
+	/// <summary>
+	/// コンストラクタ
+	/// </summary>
+	/// <param name="_nowScene">生成された時のシーン</param>
+	/// <param name="_actorTag">アクターのタグ</param>
+	Actor(const SceneBase::Scene& _nowScene, const Tag& _actorTag);
 	// デストラクタ
 	virtual ~Actor();
 
@@ -62,15 +67,26 @@ public:
 	virtual void UpdateActor(float _deltaTime) = 0;
 
 protected:
+	// アクターを生成したシーン
+	SceneBase::Scene mDirthplaceScene;
 	// アクターの状態
 	State mState;
 	// アクターのタグ
 	Tag mTag;
 
+	// @@@
 	// Transform
 
 
 	// アクターが持つコンポーネント
 	vector<Component*>mComponents;
+
+	// ゲッター、セッター
+public:
+	// アクターが生成された時のシーンを取得
+	SceneBase::Scene GetScene()const { return mDirthplaceScene; }
+	// アクターの状態を取得
+	State GetState()const { return mState; }
+
 };
 

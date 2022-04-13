@@ -13,6 +13,8 @@ using namespace std;
 #include <glew.h>
 #include <sstream>
 #include <SDL.h>
+#include <SDL_image.h>
+#include <unordered_map>
 #include <vector>
 
 // System
@@ -25,22 +27,23 @@ using namespace std;
 #include "Component.h"
 
 // Renderer
+#include "Texture.h"
 #include "Renderer.h"
 #include "VertexArray.h"
-
-// Actor
-#include "Actor.h"
-#include "Ground.h"
 
 // Scene
 #include "SceneBase.h"
 #include "Title.h"
 
+// Actor
+#include "Actor.h"
+#include "Ground.h"
+
 // Map
 #include "MapCreate.h"
 
-// ObjectManager
-#include "ObjectManager.h"
+// ActorManager
+#include "ActorManager.h"
 
 // game
 #include "Game.h"

@@ -20,7 +20,7 @@ public:
 	// シーンのタグ（種類）
 	enum class Scene :unsigned char
 	{
-		// 初期化
+		// 初期状態
 		eInit,
 		// タイトル
 		eTitle,

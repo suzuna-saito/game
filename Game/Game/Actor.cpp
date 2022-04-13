@@ -1,16 +1,18 @@
 #include "pch.h"
 
-Actor::Actor()
+Actor::Actor(const SceneBase::Scene& _nowScene, const Tag& _actorTag)
 	: mState(State::eActive)
+	, mDirthplaceScene(_nowScene)
+	, mTag(_actorTag)
 {
-	// オブジェクトを追加する
-	OBJECT_MANAGER->AddObject(this);
+	// アクターを追加する
+	ACTOR_MANAGER->AddActor(this);
 }
 
 Actor::~Actor()
 {
-	// オブジェクトを削除する
-	OBJECT_MANAGER->RemoveObject(this);
+	// アクターを削除する
+	ACTOR_MANAGER->RemoveActor();
 }
 
 void Actor::Update(float _deltaTime)

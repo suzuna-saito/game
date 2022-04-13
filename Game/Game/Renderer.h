@@ -38,10 +38,18 @@ private:
 	// レンダラーの状態を含む構造体
 	SDL_Renderer* mSdlRenderer;
 
+	// テクスチャを保管している連想配列
+	unordered_map<string, Texture*>mTextures;
+
 	// @@@@
 	// スプライト
 
 	//ゲッターセッター
 public:
+	// レンダラーの状態を含む構造体の取得
+	SDL_Renderer* GetSDLRenderer() { return mSdlRenderer; }
+
+	// 使用したいテクスチャを取得
+	Texture* GetTexture(const string& _fileName);
 };
 

@@ -13,9 +13,6 @@
     <Filter Include="Actor">
       <UniqueIdentifier>{124519e3-7bb0-430f-83e6-77addc2e33fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ObjectManager">
-      <UniqueIdentifier>{477e5237-0f06-444e-9dc1-e531b4af6e20}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MapCreate">
       <UniqueIdentifier>{00501761-b870-4d99-b6ae-a84d3793c931}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,9 @@
     </Filter>
     <Filter Include="System\RapidJson">
       <UniqueIdentifier>{c0bdfaee-b12e-45ca-9c79-203c842ddf52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Texture">
+      <UniqueIdentifier>{ff87c0eb-31b4-4441-b625-b4be5888d5ef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -69,9 +69,6 @@
     <ClCompile Include="Component.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectManager.cpp">
-      <Filter>ObjectManager</Filter>
-    </ClCompile>
     <ClCompile Include="MapCreate.cpp">
       <Filter>MapCreate</Filter>
     </ClCompile>
@@ -83,6 +80,12 @@
     </ClCompile>
     <ClCompile Include="VertexArray.cpp">
       <Filter>Renderer\Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorManager.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Renderer\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,9 +115,6 @@
     <ClInclude Include="Component.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectManager.h">
-      <Filter>ObjectManager</Filter>
-    </ClInclude>
     <ClInclude Include="MapCreate.h">
       <Filter>MapCreate</Filter>
     </ClInclude>
@@ -126,6 +126,12 @@
     </ClInclude>
     <ClInclude Include="VertexArray.h">
       <Filter>Renderer\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorManager.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Renderer\Texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

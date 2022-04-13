@@ -72,7 +72,7 @@ bool Game::Initialize()
 	mFps = new FPS();
 
 	// オブジェクト管理クラスの初期化
-	ObjectManager::CreateInstance();
+	ActorManager::CreateInstance();
 
 	return true;
 }
@@ -117,7 +117,7 @@ void Game::Termination()
 
 	// @@@
 	// スタティッククラスの解放処理
-	ObjectManager::DeleteInstance();
+	ActorManager::DeleteInstance();
 	Renderer::DeleteInstance();
 
 	// クラスの解放処理
@@ -160,15 +160,15 @@ void Game::ProcessInput()
 	}
 
 	// 入力状態の更新
-	OBJECT_MANAGER->ProcessInput(state);
+	ACTOR_MANAGER->ProcessInput(state);
 }
 
 void Game::UpdateGame()
 {
 	float deltaTime = mFps->GetDeltaTime();
 
-	// ゲームの更新処理
-	OBJECT_MANAGER->UpdateObject(deltaTime);
+	// アクターの更新処理
+	ACTOR_MANAGER->UpdateActor(deltaTime);
 }
 
 void Game::GenerateOutput()
