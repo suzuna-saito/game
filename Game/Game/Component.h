@@ -12,7 +12,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	/// <param name="_owner">アタッチするゲームオブジェクトのポインタ</param>
+	/// <param name="_owner">アタッチするアクターのポインタ</param>
 	/// <param name="_updateOrder">コンポーネントの更新順番（数値が小さいほど早く更新される)</param>
 	Component(Actor* _owner, int _updateOrder = 100);
 
@@ -32,7 +32,7 @@ public:
 	virtual void CmpUpdate(float _deltaTime) = 0;
 
 protected:
-	// アタッチしているゲームオブジェクトのポインタ
+	// アタッチしているアクターのポインタ
 	Actor* mOwner;
 
 	// コンポーネントの更新順序

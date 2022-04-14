@@ -87,6 +87,9 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Renderer\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -132,6 +135,9 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Renderer\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

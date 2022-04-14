@@ -39,7 +39,7 @@ private:
 	SDL_Renderer* mSdlRenderer;
 
 	// テクスチャを保管している連想配列
-	unordered_map<string, Texture*>mTextures;
+	unordered_map<string, SDL_Texture*>mTextures;
 
 	// @@@@
 	// スプライト
@@ -50,6 +50,6 @@ public:
 	SDL_Renderer* GetSDLRenderer() { return mSdlRenderer; }
 
 	// 使用したいテクスチャを取得
-	Texture* GetTexture(const string& _fileName);
+	SDL_Texture* GetTexture(const string& _fileName);
 };
 

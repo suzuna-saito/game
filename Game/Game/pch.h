@@ -25,6 +25,7 @@ using namespace std;
 
 // Component
 #include "Component.h"
+#include "SpriteComponent.h"
 
 // Renderer
 #include "Texture.h"

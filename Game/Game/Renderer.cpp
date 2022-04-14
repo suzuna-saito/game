@@ -8,9 +8,9 @@ Renderer::Renderer()
 {
 }
 
-Texture* Renderer::GetTexture(const string& _fileName)
+SDL_Texture* Renderer::GetTexture(const string& _fileName)
 {
-	Texture* texture = nullptr;
+	SDL_Texture* texture = nullptr;
 	// すでに作成されていないか調べる
 	auto itr = mTextures.find(_fileName);
 	if (itr != mTextures.end())
@@ -20,8 +20,7 @@ Texture* Renderer::GetTexture(const string& _fileName)
 	// 作成済みでない場合、新しくテクスチャを作成
 	else
 	{
-		texture = new Texture();
-		if (texture->Load(_fileName))
+		if (TEXTURE->Load(_fileName))
 		{
 			// mTexturesに要素を構築
 			mTextures.emplace(_fileName, texture);

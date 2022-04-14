@@ -9,12 +9,6 @@ Actor::Actor(const SceneBase::Scene& _nowScene, const Tag& _actorTag)
 	ACTOR_MANAGER->AddActor(this);
 }
 
-Actor::~Actor()
-{
-	// アクターを削除する
-	ACTOR_MANAGER->RemoveActor();
-}
-
 void Actor::Update(float _deltaTime)
 {
 	// アクターの状態がアクティブだったら

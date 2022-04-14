@@ -34,7 +34,7 @@ public:
 	/// <param name="_actorTag">アクターのタグ</param>
 	Actor(const SceneBase::Scene& _nowScene, const Tag& _actorTag);
 	// デストラクタ
-	virtual ~Actor();
+	virtual ~Actor() {};
 
 	/// <summary>
 	/// 更新処理

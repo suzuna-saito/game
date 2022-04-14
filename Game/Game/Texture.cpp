@@ -1,7 +1,32 @@
 #include "pch.h"
 
+// 自身のインスタンスの初期化
+Texture* Texture::mTexture = nullptr;
+
 Texture::Texture()
+	: mTex(nullptr)
+	, mWidth(0)
+	, mHeight(0)
 {
+}
+
+void Texture::CreateInstance()
+{
+	if (mTexture == nullptr)
+	{
+		// インスタンスを生成
+		mTexture = new Texture();
+	}
+}
+
+void Texture::DeleteInstance()
+{
+	if (mTexture != nullptr)
+	{
+		// 削除
+		delete mTexture;
+		mTexture = nullptr;
+	}
 }
 
 bool Texture::Load(const string& _fileName)
@@ -15,14 +40,18 @@ bool Texture::Load(const string& _fileName)
 	}
 
 	// SurfaceをTextureに変換
-	SDL_Texture* tex = nullptr;
-	tex = SDL_CreateTextureFromSurface(
+	mTex = SDL_CreateTextureFromSurface(
 		RENDERER->GetSDLRenderer(),	// 利用するレンダラー
 		surf);						// 変換するsurface
-	if (!tex)
+	if (!mTex)
 	{
 		printf("サーフェスからテクスチャの作成に失敗 : %s", _fileName.c_str());
 		return false;
 	}
+
+	// 画像の幅、高さを取得
+	mWidth = surf->w;
+	mHeight = surf->h;
+
 	return true;
 }

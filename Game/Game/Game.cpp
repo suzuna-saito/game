@@ -73,6 +73,8 @@ bool Game::Initialize()
 
 	// オブジェクト管理クラスの初期化
 	ActorManager::CreateInstance();
+	// 画像の読み込みを行うクラスの初期化
+	Texture::CreateInstance();
 
 	return true;
 }
@@ -95,6 +97,9 @@ void Game::GameLoop()
 		{
 			// 現在のシーンの解放
 			delete mNowScene;
+
+			// いらないアクターを削除する
+			ACTOR_MANAGER->RemoveActor();
 
 			// 現在実行中のシーンの切り替え
 			mNowScene = mTmpScene;
@@ -119,6 +124,7 @@ void Game::Termination()
 	// スタティッククラスの解放処理
 	ActorManager::DeleteInstance();
 	Renderer::DeleteInstance();
+	Texture::DeleteInstance();
 
 	// クラスの解放処理
 	delete mFps;
