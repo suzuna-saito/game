@@ -12,8 +12,6 @@ Title::Title(const Scene& _nowScene)
 
 Title::~Title()
 {
-	// 現在のシーンで生成された全てのアクターの削除
-	//ACTOR_MANAGER->RemoveSceneActor(Scene::eTitle);
 }
 
 void Title::Input(const InputState& _state)

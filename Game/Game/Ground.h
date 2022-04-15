@@ -11,5 +11,7 @@ public:
 	/// </summary>
 	/// <param name="_pos">ポジション</param>
 	Ground(const Vector3& _pos);
+	// デストラクタ
+	~Ground() {};
 };
 

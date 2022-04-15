@@ -27,6 +27,11 @@ public:
 	// 終了処理
 	void Termination();
 
+	// スプライトの追加
+	void AddSprite(SpriteComponent* _spriteComponent);
+	// スプライトの削除
+	void RemoveSprite(SpriteComponent* _spriteComponent);
+
 	//自身のインスタンス
 	static Renderer* mRenderer;
 
@@ -35,14 +40,21 @@ private:
 	Renderer();
 	~Renderer() {};
 
+	// @@@ 使わなかったら消して
+	// Sprite(2D用)の頂点バッファとインデックスバッファの作成
+	void CreateSpriteVerts();
+
 	// レンダラーの状態を含む構造体
 	SDL_Renderer* mSdlRenderer;
 
+	// スプライトコンポーネントの配列
+	vector<SpriteComponent*>mSprites;
 	// テクスチャを保管している連想配列
 	unordered_map<string, SDL_Texture*>mTextures;
 
-	// @@@@
-	// スプライト
+	// @@@
+	// スプライト用頂点
+	VertexArray* mSpriteVerts;
 
 	//ゲッターセッター
 public:

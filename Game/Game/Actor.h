@@ -1,8 +1,5 @@
 #pragma once
 
-// 前方宣言
-class Component;
-
 /*
 全てのActorの基底クラス
 */
@@ -67,18 +64,18 @@ public:
 	virtual void UpdateActor(float _deltaTime) = 0;
 
 protected:
-	// アクターを生成したシーン
+	// 各自のアクターを生成したシーン
 	SceneBase::Scene mDirthplaceScene;
-	// アクターの状態
+	// 各自のアクターの状態
 	State mState;
-	// アクターのタグ
+	// 各自のアクターが持つタグ
 	Tag mTag;
 
 	// @@@
 	// Transform
 
 
-	// アクターが持つコンポーネント
+	// 各自のアクターが持つコンポーネント
 	vector<Component*>mComponents;
 
 	// ゲッター、セッター

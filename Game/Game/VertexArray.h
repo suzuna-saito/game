@@ -1,7 +1,7 @@
 #pragma once
 
 /*
-頂点クラス
+頂点バッファとインデックスバッファの作成を行うクラス
 */
 class VertexArray
 {

@@ -60,7 +60,6 @@ private:
 	// ゲッター、セッター
 public:
 	// 最初のシーンをセット
-	// _firstScene 最初のシーン
 	void SetFirstScene(SceneBase* _firstScene) { mNowScene = _firstScene; }
 };
 

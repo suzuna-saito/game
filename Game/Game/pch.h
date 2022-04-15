@@ -29,8 +29,8 @@ using namespace std;
 
 // Renderer
 #include "Texture.h"
-#include "Renderer.h"
 #include "VertexArray.h"
+#include "Renderer.h"
 
 // Scene
 #include "SceneBase.h"
