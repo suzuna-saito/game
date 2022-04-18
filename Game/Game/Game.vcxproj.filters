@@ -40,6 +40,9 @@
     <Filter Include="Renderer\Texture">
       <UniqueIdentifier>{ff87c0eb-31b4-4441-b625-b4be5888d5ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{929b8b8f-67c1-4891-a113-3bc32c060496}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Renderer.cpp">
@@ -139,5 +142,13 @@
     <ClInclude Include="SpriteComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BasicMesh.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="BasicMesh.vert">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>
