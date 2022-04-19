@@ -23,6 +23,9 @@ using namespace std;
 #include "InputSystem.h"
 #include "RapidJsonHelper.h"
 
+// Shader
+#include "Shader.h"
+
 // Component
 #include "Component.h"
 #include "SpriteComponent.h"
@@ -40,11 +43,11 @@ using namespace std;
 #include "Actor.h"
 #include "Ground.h"
 
-// Map
-#include "MapCreate.h"
-
 // ActorManager
 #include "ActorManager.h"
+
+// Map
+#include "MapCreate.h"
 
 // game
 #include "Game.h"

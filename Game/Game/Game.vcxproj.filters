@@ -43,6 +43,9 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{929b8b8f-67c1-4891-a113-3bc32c060496}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader\GLSL">
+      <UniqueIdentifier>{ad24bcb7-239d-476a-b216-e6b13fe5f86a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Renderer.cpp">
@@ -93,6 +96,9 @@
     <ClCompile Include="SpriteComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -142,13 +148,16 @@
     <ClInclude Include="SpriteComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BasicMesh.frag">
-      <Filter>Shader</Filter>
+    <None Include="Shaders\BasicMesh.frag">
+      <Filter>Shader\GLSL</Filter>
     </None>
-    <None Include="BasicMesh.vert">
-      <Filter>Shader</Filter>
+    <None Include="Shaders\BasicMesh.vert">
+      <Filter>Shader\GLSL</Filter>
     </None>
   </ItemGroup>
 </Project>
