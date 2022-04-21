@@ -19,6 +19,9 @@ public:
 	/// <returns> true : 成功 , false : 失敗</returns>
 	bool Load(const string& _vertName, const string& _fragName);
 
+	// ロードしたシェーダーを削除
+	void Unload();
+
 	// シェーダープログラムをアクティブに設定
 	void SetActive();
 

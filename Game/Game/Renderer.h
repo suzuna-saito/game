@@ -40,6 +40,9 @@ private:
 	Renderer();
 	~Renderer() {};
 
+	// シェーダーの読み込み
+	bool LoadShaders();
+
 	// @@@ 使わなかったら消して
 	// Sprite(2D用)の頂点バッファとインデックスバッファの作成
 	void CreateSpriteVerts();
@@ -49,10 +52,13 @@ private:
 
 	// スプライトコンポーネントの配列
 	vector<SpriteComponent*>mSprites;
-	// テクスチャを保管している連想配列
+	// テクスチャを保管している連想配列 gluint型
 	unordered_map<string, SDL_Texture*>mTextures;
 
 	// @@@
+	/* クラスのポインタ */
+	// スプライト
+	Shader* mSpriteShader;
 	// スプライト用頂点
 	VertexArray* mSpriteVerts;
 

@@ -13,7 +13,6 @@ public:
 	// インスタンスを削除する
 	static void DeleteInstance();
 
-
 	/// <summary>
 	/// テクスチャのロード
 	/// </summary>

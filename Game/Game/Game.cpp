@@ -59,7 +59,7 @@ bool Game::Initialize()
 	// 一部のプラットフォームで出る無害なエラーコードをクリアする
 	glGetError();
 
-	//レンダラーの初期化
+	// レンダラーの初期化
 	Renderer::CreateInstance();
 	if (!RENDERER->Initialize())
 	{

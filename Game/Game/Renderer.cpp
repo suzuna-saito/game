@@ -6,55 +6,8 @@ Renderer* Renderer::mRenderer = nullptr;
 Renderer::Renderer()
 	: mSdlRenderer(nullptr)
 	, mSpriteVerts(nullptr)
+	, mSpriteShader(nullptr)
 {
-}
-
-void Renderer::CreateSpriteVerts()
-{
-	float vertices[] =
-	{
-		// x     y     z    nx   ny   nz    u    v
-		-0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, // 左上頂点
-		 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, // 右上頂点
-		 0.5f,-0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, // 右下頂点
-		-0.5f,-0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f  // 左下頂点
-	};
-
-	unsigned int indices[] =
-	{
-		0, 2, 1,
-		2, 0, 3
-	};
-
-	mSpriteVerts = new VertexArray(vertices, 4, indices, 6);
-}
-
-SDL_Texture* Renderer::GetTexture(const string& _fileName)
-{
-	SDL_Texture* texture = nullptr;
-	// すでに作成されていないか調べる
-	auto itr = mTextures.find(_fileName);
-	if (itr != mTextures.end())
-	{
-		texture = itr->second;
-	}
-	// 作成済みでない場合、新しくテクスチャを作成
-	else
-	{
-		if (TEXTURE->Load(_fileName))
-		{
-			// mTexturesに要素を構築
-			mTextures.emplace(_fileName, texture);
-		}
-		// テクスチャの読み込みが出来なかったら
-		else
-		{
-			delete texture;
-			texture = nullptr;
-		}
-	}
-
-	return texture;
 }
 
 void Renderer::CreateInstance()
@@ -87,6 +40,17 @@ bool Renderer::Initialize()
 		printf("SDLRendererの作成に失敗 : %s", SDL_GetError());
 		return false;
 	}
+
+	// シェーダーのロード
+	if (!LoadShaders())
+	{
+		SDL_Log("シェーダーのロードに失敗しました");
+		return false;
+	}
+
+	// スプライト用の頂点配列を作成
+	CreateSpriteVerts();
+
 	return true;
 }
 
@@ -110,10 +74,73 @@ void Renderer::UnloadData()
 	delete mSpriteVerts;
 }
 
-void Renderer::Termination()
+bool Renderer::LoadShaders()
 {
-	SDL_DestroyRenderer(mSdlRenderer);
-	SDL_DestroyWindow(Game::mWindow);
+	// スプライトシェーダーの生成
+	mSpriteShader = new Shader();
+	// @@@ シェーダーの名前変更するかも？
+	if (!mSpriteShader->Load("Shaders/BasicMesh.vert", "Shaders/BasicMesh.frag"))
+	{
+		return false;
+	}
+
+	mSpriteShader->SetActive();
+
+	return true;
+}
+
+void Renderer::CreateSpriteVerts()
+{
+	float vertices[] =
+	{
+		// x     y     z    nx   ny   nz    u    v
+		-0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, // 左上頂点
+		 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, // 右上頂点
+		 0.5f,-0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, // 右下頂点
+		-0.5f,-0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f  // 左下頂点
+	};
+
+	unsigned int indices[] =
+	{
+		0, 2, 1,
+		2, 0, 3
+	};
+
+	mSpriteVerts = new VertexArray(vertices, 4, indices, 6);
+}
+
+void Renderer::RemoveSprite(SpriteComponent* _spriteComponent)
+{
+	auto iter = find(mSprites.begin(), mSprites.end(), _spriteComponent);
+	mSprites.erase(iter);
+}
+
+SDL_Texture* Renderer::GetTexture(const string& _fileName)
+{
+	SDL_Texture* texture = nullptr;
+	// すでに作成されていないか調べる
+	auto itr = mTextures.find(_fileName);
+	if (itr != mTextures.end())
+	{
+		texture = itr->second;
+	}
+	// 作成済みでない場合、新しくテクスチャを作成
+	else
+	{
+		if (TEXTURE->Load(_fileName))
+		{
+			// mTexturesに要素を構築
+			mTextures.emplace(_fileName, texture);
+		}
+		// テクスチャの読み込みが出来なかったら
+		else
+		{
+			delete texture;
+			texture = nullptr;
+		}
+	}
+
+	return texture;
 }
 
 void Renderer::AddSprite(SpriteComponent* _spriteComponent)
@@ -136,8 +163,8 @@ void Renderer::AddSprite(SpriteComponent* _spriteComponent)
 	mSprites.insert(iter, _spriteComponent);
 }
 
-void Renderer::RemoveSprite(SpriteComponent* _spriteComponent)
+void Renderer::Termination()
 {
-	auto iter = find(mSprites.begin(), mSprites.end(), _spriteComponent);
-	mSprites.erase(iter);
+	SDL_DestroyRenderer(mSdlRenderer);
+	SDL_DestroyWindow(Game::mWindow);
 }
