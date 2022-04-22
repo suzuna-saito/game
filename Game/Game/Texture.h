@@ -1,17 +1,15 @@
 #pragma once
 
-#define TEXTURE Texture::mTexture
-
 /*
-画像の読み込みを行うクラス(シングルトン)
+画像の読み込みを行うクラス
 */
 class Texture
 {
 public:
-	// インスタンスを作成する
-	static void CreateInstance();
-	// インスタンスを削除する
-	static void DeleteInstance();
+	// コンストラクタ
+	Texture();
+	// デストラクタ
+	~Texture() {};
 
 	/// <summary>
 	/// テクスチャのロード
@@ -20,14 +18,8 @@ public:
 	/// <returns>true : 成功 , false : 失敗</returns>
 	bool Load(const string& _fileName);
 
-	// 自身のインスタンス
-	static Texture* mTexture;
-
 private:
-	// コンストラクタ、デストラクタの隠蔽
-	Texture();
-	~Texture() {};
-
+	// @@@
 	// Surfaceから変換されたテクスチャ
 	SDL_Texture* mTex;
 

@@ -117,20 +117,24 @@ void Renderer::RemoveSprite(SpriteComponent* _spriteComponent)
 
 SDL_Texture* Renderer::GetTexture(const string& _fileName)
 {
-	SDL_Texture* texture = nullptr;
+	Texture* texture = nullptr;
+
+	// 現在の要素
+	SDL_Texture* nowTexture = nullptr;
 	// すでに作成されていないか調べる
 	auto itr = mTextures.find(_fileName);
 	if (itr != mTextures.end())
 	{
-		texture = itr->second;
+		nowTexture = itr->second;
 	}
 	// 作成済みでない場合、新しくテクスチャを作成
 	else
 	{
-		if (TEXTURE->Load(_fileName))
+		texture = new Texture();
+		if (texture->Load(_fileName))
 		{
 			// mTexturesに要素を構築
-			mTextures.emplace(_fileName, texture);
+			mTextures.emplace(_fileName, nowTexture);
 		}
 		// テクスチャの読み込みが出来なかったら
 		else
@@ -140,7 +144,7 @@ SDL_Texture* Renderer::GetTexture(const string& _fileName)
 		}
 	}
 
-	return texture;
+	return nowTexture;
 }
 
 void Renderer::AddSprite(SpriteComponent* _spriteComponent)

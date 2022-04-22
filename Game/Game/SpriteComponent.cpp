@@ -16,6 +16,11 @@ SpriteComponent::~SpriteComponent()
 	RENDERER->RemoveSprite(this);
 }
 
-void SpriteComponent::Draw()
+void SpriteComponent::Draw(Shader* _shader)
 {
+	glClearColor(0.86f, 0.86f, 0.86f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	// ŽlŠpŒ`‚ð•`‰æ
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }

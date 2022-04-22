@@ -1,7 +1,6 @@
 #pragma once
 
 // @@ 2Dの描画だからこのクラス使わない可能性あり。その場合消して
-// って、なったらテクスチャクラスをシングルトンにする必要ないかも？
 
 /*
 スクリーン上に画像データを描画するクラス
@@ -18,9 +17,8 @@ public:
 	// デストラクタ
 	~SpriteComponent();
 
-	// @@@ 引数シェーダー？
 	// 描画処理
-	virtual void Draw();
+	virtual void Draw(Shader* _shader);
 
 protected:
 	// 描画される順番

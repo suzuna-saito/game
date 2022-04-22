@@ -1,32 +1,10 @@
 #include "pch.h"
 
-// 自身のインスタンスの初期化
-Texture* Texture::mTexture = nullptr;
-
 Texture::Texture()
 	: mTex(nullptr)
 	, mWidth(0)
 	, mHeight(0)
 {
-}
-
-void Texture::CreateInstance()
-{
-	if (mTexture == nullptr)
-	{
-		// インスタンスを生成
-		mTexture = new Texture();
-	}
-}
-
-void Texture::DeleteInstance()
-{
-	if (mTexture != nullptr)
-	{
-		// 削除
-		delete mTexture;
-		mTexture = nullptr;
-	}
 }
 
 bool Texture::Load(const string& _fileName)
