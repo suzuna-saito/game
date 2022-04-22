@@ -18,9 +18,8 @@ public:
 	// デストラクタ
 	~SpriteComponent();
 
-	// @@@ 引数シェーダー？
 	// 描画処理
-	virtual void Draw();
+	virtual void Draw(Shader* _shader);
 
 protected:
 	// 描画される順番

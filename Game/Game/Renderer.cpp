@@ -62,8 +62,15 @@ void Renderer::Draw()
 	// カラーバッファをクリア
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	// @@@
-	// シーンを描画
+	// スプライトシェーダーをアクティブにする
+	// スプライト頂点配列を有効にする
+	mRenderer->mSpriteShader->SetActive();
+	mRenderer->mSpriteVerts->SetActive();
+	// 全てのスプライトの描画
+	for (auto sprite : mRenderer->mSprites)
+	{
+		sprite->Draw(mRenderer->mSpriteShader);
+	}
 
 	// バッファを交換、これでシーンが表示される
 	SDL_GL_SwapWindow(Game::mWindow);

@@ -16,6 +16,8 @@ SpriteComponent::~SpriteComponent()
 	Renderer::RemoveSprite(this);
 }
 
-void SpriteComponent::Draw()
+void SpriteComponent::Draw(Shader* _shader)
 {
+	// ŽlŠpŒ`‚ð•`‰æ
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
