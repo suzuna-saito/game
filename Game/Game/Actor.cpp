@@ -6,7 +6,7 @@ Actor::Actor(const SceneBase::Scene& _nowScene, const Tag& _actorTag)
 	, mTag(_actorTag)
 {
 	// アクターを追加する
-	ACTOR_MANAGER->AddActor(this);
+	ActorManager::AddActor(this);
 }
 
 void Actor::Update(float _deltaTime)

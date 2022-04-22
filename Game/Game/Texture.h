@@ -19,7 +19,6 @@ public:
 	bool Load(const string& _fileName);
 
 private:
-	// @@@
 	// Surfaceから変換されたテクスチャ
 	SDL_Texture* mTex;
 
@@ -30,6 +29,7 @@ private:
 
 	// ゲッター、セッター
 public:
+	// @@@
 	// Surfaceから変換されたテクスチャを取得
 	SDL_Texture* GetTexture() const { return mTex; }
 

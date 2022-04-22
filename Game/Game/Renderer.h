@@ -8,7 +8,7 @@ class Renderer
 public:
 	// コンストラクタ
 	Renderer();
-	// デストラクタ
+	//デストラクタ
 	~Renderer() {};
 
 	// インスタンスを作成する
@@ -29,27 +29,28 @@ public:
 	// 終了処理
 	static void Termination();
 
-	// シェーダーの読み込み
-	static bool LoadShaders();
-
-	// @@@ 使わなかったら消して
-	// Sprite(2D用)の頂点バッファとインデックスバッファの作成
-	static void CreateSpriteVerts();
-
 	// スプライトの追加
 	static void AddSprite(SpriteComponent* _spriteComponent);
 	// スプライトの削除
 	static void RemoveSprite(SpriteComponent* _spriteComponent);
 
-private:
-	// 自身のインスタンス
+	// レンダラーの実体（アプリ内に唯一存在）
 	static Renderer* mRenderer;
+
+private:
+	// シェーダーの読み込み
+	bool LoadShaders();
+
+	// @@@ 使わなかったら消して
+	// Sprite(2D用)の頂点バッファとインデックスバッファの作成
+	void CreateSpriteVerts();
+
+	// レンダラーの状態を含む構造体
+	SDL_Renderer* mSdlRenderer;
 
 	// スプライトコンポーネントの配列
 	vector<SpriteComponent*>mSprites;
-
-	// @@@
-	// テクスチャを保管している連想配列 gluint型?
+	// テクスチャを保管している連想配列 gluint型
 	unordered_map<string, SDL_Texture*>mTextures;
 
 	// @@@
@@ -62,10 +63,9 @@ private:
 	//ゲッターセッター
 public:
 	// レンダラーの状態を含む構造体の取得
-	SDL_Renderer* GetSDLRenderer() { return mSdlRenderer; }
+	static SDL_Renderer* GetSDLRenderer() { return mRenderer->mSdlRenderer; }
 
-	// @@@ glになると型違う？
-	// 使用したいテクスチャを取得 
+	// 使用したいテクスチャを取得
 	SDL_Texture* GetTexture(const string& _fileName);
 };
 
