@@ -30,13 +30,13 @@ void ActorManager::DeleteInstance()
 void ActorManager::AddActor(Actor* _actor)
 {
 	// アクターの更新中なら待ちに追加
-	if (mUpdatingActor)
+	if (mManager->mUpdatingActor)
 	{
-		mPendingActors.emplace_back(_actor);
+		mManager->mPendingActors.emplace_back(_actor);
 	}
 	else
 	{
-		mActors.emplace_back(_actor);
+		mManager->mActors.emplace_back(_actor);
 	}
 }
 
@@ -44,7 +44,7 @@ void ActorManager::RemoveActor()
 {
 	// 消すアクターを判別
 	vector<Actor*> deleteActors;
-	for (auto actor : mActors)
+	for (auto actor : mManager->mActors)
 	{
 		// このアクターが生成されたシーンと現在のシーンが異なれば
 		if (actor->GetScene() != SceneBase::mIsScene)
@@ -88,7 +88,7 @@ void ActorManager::RemoveActor()
 
 void ActorManager::ProcessInput(const InputState& _state)
 {
-	for (auto actor : mActors)
+	for (auto actor : mManager->mActors)
 	{
 		// 各入力関数に入力状態を渡す
 		actor->ProcessInput(_state);
@@ -97,28 +97,28 @@ void ActorManager::ProcessInput(const InputState& _state)
 
 void ActorManager::UpdateActor(float _deltaTime)
 {
-	mUpdatingActor = true;
+	mManager->mUpdatingActor = true;
 
-	for (auto actor : mActors)
+	for (auto actor : mManager->mActors)
 	{
 		// 各アクターを更新
 		actor->Update(_deltaTime);
 	}
 
-	mUpdatingActor = false;
+	mManager->mUpdatingActor = false;
 
 	// 待ちになっていたアクターをmActorObjectsに移動
-	for (auto pending : mPendingActors)
+	for (auto pending : mManager->mPendingActors)
 	{
-		mActors.emplace_back(pending);
+		mManager->mActors.emplace_back(pending);
 	}
 
 	// 待ちの要素を削除
-	mPendingActors.clear();
+	mManager->mPendingActors.clear();
 
 	// 死んだアクターを一時配列に追加
 	vector<Actor*> deadActors;
-	for (auto actor : mActors)
+	for (auto actor : mManager->mActors)
 	{
 		if (actor->GetState() == Actor::State::eDead)
 		{

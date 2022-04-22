@@ -7,13 +7,13 @@ SpriteComponent::SpriteComponent(Actor* _owner, int _drawOrder)
 	, mTexHeight(0)
 {
 	// スプライトの追加
-	RENDERER->AddSprite(this);
+	Renderer::AddSprite(this);
 }
 
 SpriteComponent::~SpriteComponent()
 {
 	// スプライトの削除
-	RENDERER->RemoveSprite(this);
+	Renderer::RemoveSprite(this);
 }
 
 void SpriteComponent::Draw(Shader* _shader)

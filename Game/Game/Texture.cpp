@@ -19,7 +19,7 @@ bool Texture::Load(const string& _fileName)
 
 	// SurfaceをTextureに変換
 	mTex = SDL_CreateTextureFromSurface(
-		RENDERER->GetSDLRenderer(),	// 利用するレンダラー
+		Renderer::GetSDLRenderer(),	// 利用するレンダラー
 		surf);						// 変換するsurface
 	if (!mTex)
 	{

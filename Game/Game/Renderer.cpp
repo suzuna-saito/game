@@ -1,6 +1,6 @@
 #include "pch.h"
 
-// 自身のインスタンスの初期化
+// レンダラー実体へのポインタ定義
 Renderer* Renderer::mRenderer = nullptr;
 
 Renderer::Renderer()
@@ -33,23 +33,23 @@ bool Renderer::Initialize()
 {
 	// SDL_Rendererを作る
 	// 描画対象となるウィンドウ、-1、
-	mSdlRenderer = SDL_CreateRenderer(Game::mWindow, -1,
+	mRenderer->mSdlRenderer = SDL_CreateRenderer(Game::mWindow, -1,
 		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if (!mSdlRenderer)
+	if (!mRenderer->mSdlRenderer)
 	{
 		printf("SDLRendererの作成に失敗 : %s", SDL_GetError());
 		return false;
 	}
 
 	// シェーダーのロード
-	if (!LoadShaders())
+	if (!mRenderer->LoadShaders())
 	{
 		SDL_Log("シェーダーのロードに失敗しました");
 		return false;
 	}
 
 	// スプライト用の頂点配列を作成
-	CreateSpriteVerts();
+	mRenderer->CreateSpriteVerts();
 
 	return true;
 }
@@ -71,7 +71,7 @@ void Renderer::Draw()
 
 void Renderer::UnloadData()
 {
-	delete mSpriteVerts;
+	delete mRenderer->mSpriteVerts;
 }
 
 bool Renderer::LoadShaders()
@@ -111,8 +111,8 @@ void Renderer::CreateSpriteVerts()
 
 void Renderer::RemoveSprite(SpriteComponent* _spriteComponent)
 {
-	auto iter = find(mSprites.begin(), mSprites.end(), _spriteComponent);
-	mSprites.erase(iter);
+	auto iter = find(mRenderer->mSprites.begin(), mRenderer->mSprites.end(), _spriteComponent);
+	mRenderer->mSprites.erase(iter);
 }
 
 SDL_Texture* Renderer::GetTexture(const string& _fileName)
@@ -152,9 +152,9 @@ void Renderer::AddSprite(SpriteComponent* _spriteComponent)
 	// ソート済みの配列で挿入点を見つける
 	// (DrawOrderが小さい順番に描画するため)
 	int myDrawOrder = _spriteComponent->GetDrawOrder();
-	auto iter = mSprites.begin();
+	auto iter = mRenderer->mSprites.begin();
 	for (;
-		iter != mSprites.end();
+		iter != mRenderer->mSprites.end();
 		++iter)
 	{
 		if (myDrawOrder < (*iter)->GetDrawOrder())
@@ -164,11 +164,11 @@ void Renderer::AddSprite(SpriteComponent* _spriteComponent)
 	}
 
 	// イテレータ―の位置の前に要素を挿入する
-	mSprites.insert(iter, _spriteComponent);
+	mRenderer->mSprites.insert(iter, _spriteComponent);
 }
 
 void Renderer::Termination()
 {
-	SDL_DestroyRenderer(mSdlRenderer);
+	SDL_DestroyRenderer(mRenderer->mSdlRenderer);
 	SDL_DestroyWindow(Game::mWindow);
 }

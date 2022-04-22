@@ -1,13 +1,15 @@
 #pragma once
 
-#define RENDERER Renderer::mRenderer
-
 /*
-描画進行を行うクラス(シングルトン)
+描画進行を行うクラス
 */
 class Renderer
 {
 public:
+	// コンストラクタ
+	Renderer();
+	//デストラクタ
+	~Renderer() {};
 
 	// インスタンスを作成する
 	static void CreateInstance();
@@ -16,30 +18,26 @@ public:
 
 	// 初期化処理
 	// return true : 成功、false : 失敗
-	bool Initialize();
+	static bool Initialize();
 
 	// 描画処理
-	void Draw();
+	static void Draw();
 
 	// ロードしたデータの解放
-	void UnloadData();
+	static void UnloadData();
 
 	// 終了処理
-	void Termination();
+	static void Termination();
 
 	// スプライトの追加
-	void AddSprite(SpriteComponent* _spriteComponent);
+	static void AddSprite(SpriteComponent* _spriteComponent);
 	// スプライトの削除
-	void RemoveSprite(SpriteComponent* _spriteComponent);
+	static void RemoveSprite(SpriteComponent* _spriteComponent);
 
-	//自身のインスタンス
+	// レンダラーの実体（アプリ内に唯一存在）
 	static Renderer* mRenderer;
 
 private:
-	// コンストラクタ、デストラクタの隠蔽
-	Renderer();
-	~Renderer() {};
-
 	// シェーダーの読み込み
 	bool LoadShaders();
 
@@ -65,7 +63,7 @@ private:
 	//ゲッターセッター
 public:
 	// レンダラーの状態を含む構造体の取得
-	SDL_Renderer* GetSDLRenderer() { return mSdlRenderer; }
+	static SDL_Renderer* GetSDLRenderer() { return mRenderer->mSdlRenderer; }
 
 	// 使用したいテクスチャを取得
 	SDL_Texture* GetTexture(const string& _fileName);
