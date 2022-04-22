@@ -61,7 +61,7 @@ bool Game::Initialize()
 
 	// レンダラーの初期化
 	Renderer::CreateInstance();
-	if (!RENDERER->Initialize())
+	if (!Renderer::Initialize())
 	{
 		SDL_Log("レンダラーの初期化に失敗しました");
 		Renderer::DeleteInstance();
@@ -73,8 +73,6 @@ bool Game::Initialize()
 
 	// オブジェクト管理クラスの初期化
 	ActorManager::CreateInstance();
-	// 画像の読み込みを行うクラスの初期化
-	Texture::CreateInstance();
 
 	return true;
 }
@@ -99,7 +97,7 @@ void Game::GameLoop()
 			delete mNowScene;
 
 			// いらないアクターを削除する
-			ACTOR_MANAGER->RemoveActor();
+			ActorManager::RemoveActor();
 
 			// 現在実行中のシーンの切り替え
 			mNowScene = mTmpScene;
@@ -124,7 +122,6 @@ void Game::Termination()
 	// スタティッククラスの解放処理
 	ActorManager::DeleteInstance();
 	Renderer::DeleteInstance();
-	Texture::DeleteInstance();
 
 	// クラスの解放処理
 	delete mFps;
@@ -165,8 +162,8 @@ void Game::ProcessInput()
 		mIsRunningFlag = false;
 	}
 
-	// 入力状態の更新
-	ACTOR_MANAGER->ProcessInput(state);
+	// アクターの入力状態の更新
+	ActorManager::ProcessInput(state);
 }
 
 void Game::UpdateGame()
@@ -174,21 +171,22 @@ void Game::UpdateGame()
 	float deltaTime = mFps->GetDeltaTime();
 
 	// アクターの更新処理
-	ACTOR_MANAGER->UpdateActor(deltaTime);
+	ActorManager::UpdateActor(deltaTime);
 }
 
 void Game::GenerateOutput()
 {
-	RENDERER->Draw();
+	Renderer::Draw();
 }
 
 void Game::UnloadData()
 {
 	//@@@
 	// 描画しているデータを削除
-	if (RENDERER != nullptr)
+	if (Renderer::mRenderer != nullptr)
 	{
-
+		Renderer::UnloadData();
+		Renderer::Termination();
 	}
 }
 
