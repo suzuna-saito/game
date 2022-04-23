@@ -62,6 +62,7 @@ void Renderer::Draw()
 	// カラーバッファをクリア
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	// @@@ スプライトの描画をしないならいらない
 	// スプライトシェーダーをアクティブにする
 	// スプライト頂点配列を有効にする
 	mRenderer->mSpriteShader->SetActive();

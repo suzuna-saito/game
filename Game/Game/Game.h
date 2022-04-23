@@ -27,8 +27,6 @@ private:
 	void ProcessInput();
 	// ゲームの更新処理
 	void UpdateGame();
-	// 描画関連の処理
-	void GenerateOutput();
 	// ロードしたデータの解放
 	void UnloadData();
 

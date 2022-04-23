@@ -107,7 +107,7 @@ void Game::GameLoop()
 		// ゲームの更新処理
 		UpdateGame();
 		// 現在のシーンの描画処理
-		GenerateOutput();
+		Renderer::Draw();
 		// FPSの更新処理
 		mFps->Update();
 	}
@@ -119,7 +119,7 @@ void Game::Termination()
 	UnloadData();
 
 	// @@@
-	// スタティッククラスの解放処理
+	// 実体を一つしか持たないクラスの解放処理
 	ActorManager::DeleteInstance();
 	Renderer::DeleteInstance();
 
@@ -172,11 +172,6 @@ void Game::UpdateGame()
 
 	// アクターの更新処理
 	ActorManager::UpdateActor(deltaTime);
-}
-
-void Game::GenerateOutput()
-{
-	Renderer::Draw();
 }
 
 void Game::UnloadData()
