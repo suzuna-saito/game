@@ -63,20 +63,32 @@ public:
 	/// <param name="_deltaTime">最後のフレームを完了するのに要した時間</param>
 	virtual void UpdateActor(float _deltaTime) = 0;
 
+	// 個々の変換行列を作成
+	void ComputeWorldTransform();
+
 protected:
-	// 各自のアクターを生成したシーン
-	SceneBase::Scene mDirthplaceScene;
 	// 各自のアクターの状態
 	State mState;
-	// 各自のアクターが持つタグ
-	Tag mTag;
 
 	// @@@
 	// Transform
+	Vector3 mPos;
+	Vector3 mScale;
+	Quaternion mRotation;
 
+	// アクターのワールド行列
+	Matrix4 mWorldTransform;
+	// ワールド行列の再計算の必要性を管理
+	bool mRecomputeWorldTransform;
 
 	// 各自のアクターが持つコンポーネント
 	vector<Component*>mComponents;
+
+private:
+	// 各自のアクターを生成したシーン
+	SceneBase::Scene mDirthplaceScene;
+	// 各自のアクターが持つタグ
+	Tag mTag;
 
 	// ゲッター、セッター
 public:
@@ -84,6 +96,5 @@ public:
 	SceneBase::Scene GetScene()const { return mDirthplaceScene; }
 	// アクターの状態を取得
 	State GetState()const { return mState; }
-
 };
 

@@ -110,6 +110,8 @@ void ActorManager::UpdateActor(float _deltaTime)
 	// 待ちになっていたアクターをmActorObjectsに移動
 	for (auto pending : mManager->mPendingActors)
 	{
+		// 先にワールド変換する
+		pending->ComputeWorldTransform();
 		mManager->mActors.emplace_back(pending);
 	}
 
