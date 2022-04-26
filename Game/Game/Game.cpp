@@ -1,6 +1,8 @@
 #include "pch.h"
 
 SDL_Window* Game::mWindow = nullptr;
+const float Game::MWidth = 1920.0f;
+const float Game::MHeight = 1080.0f;
 
 Game::Game()
 	: mIsRunningFlag(true)
@@ -9,8 +11,6 @@ Game::Game()
 	, mContext(nullptr)
 	, mNowScene(NULL)
 	, mTmpScene(NULL)
-	, MWidth(1920)
-	, MHeight(1080)
 {
 }
 

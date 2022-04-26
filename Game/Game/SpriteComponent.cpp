@@ -18,6 +18,16 @@ SpriteComponent::~SpriteComponent()
 
 void SpriteComponent::Draw(Shader* _shader)
 {
-	// 四角形を描画
+	// テクスチャの幅と高さで矩形をスケーリング
+	Matrix4 scaleMat = Matrix4::CreateScale(
+		static_cast<float>(mTexWidth),
+		static_cast<float>(mTexHeight),
+		1.0f);
+	// アクターのワールド行列と掛けてこのスプライトに必要なワールド行列を作る
+	Matrix4 world = scaleMat * mOwner->GetWorldTransform();
+
+	// uWorldTransformの設定
+	_shader->SetMatrixUniform("uWorldTransform", world);
+	// 矩形を描画
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }

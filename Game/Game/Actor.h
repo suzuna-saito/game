@@ -94,7 +94,11 @@ private:
 public:
 	// アクターが生成された時のシーンを取得
 	SceneBase::Scene GetScene()const { return mDirthplaceScene; }
+
 	// アクターの状態を取得
 	State GetState()const { return mState; }
+
+	// アクターのワールド行列を取得
+	const Matrix4& GetWorldTransform()const { return mWorldTransform; }
 };
 

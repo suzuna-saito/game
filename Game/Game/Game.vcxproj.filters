@@ -153,10 +153,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\BasicMesh.frag">
+    <None Include="Shaders\Sprite.frag">
       <Filter>Shader\GLSL</Filter>
     </None>
-    <None Include="Shaders\BasicMesh.vert">
+    <None Include="Shaders\Sprite.vert">
       <Filter>Shader\GLSL</Filter>
     </None>
   </ItemGroup>

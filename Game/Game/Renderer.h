@@ -53,7 +53,6 @@ private:
 	// テクスチャを保管している連想配列 gluint型
 	unordered_map<string, SDL_Texture*>mTextures;
 
-	// @@@
 	/* クラスのポインタ */
 	// スプライト
 	Shader* mSpriteShader;

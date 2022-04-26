@@ -6,6 +6,4 @@ Ground::Ground(const Vector3& _pos)
 	// Actorƒƒ“ƒo•Ï”‚Ì‰Šú‰»
 	mPos = _pos;
 	mScale = Vector3(1.0f, 1.0f, 1.0f);
-
-
 }

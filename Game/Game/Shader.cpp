@@ -45,6 +45,14 @@ void Shader::SetActive()
 	glUseProgram(mShaderProgram);
 }
 
+void Shader::SetMatrixUniform(const char* _name, const Matrix4& _matrix)
+{
+	// この名前のuniformを探す
+	GLuint loc = glGetUniformLocation(mShaderProgram, _name);
+	// uniformに行列データを送る
+	glUniformMatrix4fv(loc, 1, GL_TRUE, _matrix.GetAsFloatPtr());
+}
+
 bool Shader::CompileShader(const string& _fileName, GLenum _shaderType, GLuint& _outShader)
 {
 	// ファイル読み込み

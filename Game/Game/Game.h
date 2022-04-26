@@ -21,6 +21,10 @@ public:
 
 	// SDLが作るウィンドウ
 	static SDL_Window* mWindow;
+	// ウィンドウの横幅
+	static const float MWidth;
+	// ウィンドウの縦幅
+	static const float MHeight;
 
 private:
 	// 入力関連の処理
@@ -32,11 +36,6 @@ private:
 
 	// コアOpenGLプロファイル設定
 	void OpenGLSetup();
-
-	// ウィンドウの横幅
-	const int MWidth;
-	// ウィンドウの縦幅
-	const int MHeight;
 
 	// コンテクスト
 	SDL_GLContext mContext;

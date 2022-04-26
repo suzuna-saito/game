@@ -34,8 +34,8 @@ public:
 	// 描画される順番を取得
 	int GetDrawOrder() const { return mDrawOrder; }
 
-	// @ メモ　レンダラーの中のテクスチャを作成した所で呼ぶ
-	// テクスチャの横幅、縦幅をセット
-	int SetTexSize(int _w, int _h) { mTexWidth = _w; mTexHeight = _h; }
+	//// @ メモ　レンダラーの中のテクスチャを作成した所で呼ぶ
+	//// テクスチャの横幅、縦幅をセット
+	//int SetTexSize(int _w, int _h) { mTexWidth = _w; mTexHeight = _h; }
 };
 

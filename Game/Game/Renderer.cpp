@@ -77,22 +77,19 @@ void Renderer::Draw()
 	SDL_GL_SwapWindow(Game::mWindow);
 }
 
-void Renderer::UnloadData()
-{
-	delete mRenderer->mSpriteVerts;
-}
-
 bool Renderer::LoadShaders()
 {
 	// スプライトシェーダーの生成
 	mSpriteShader = new Shader();
-	// @@@ シェーダーの名前変更するかも？
-	if (!mSpriteShader->Load("Shaders/BasicMesh.vert", "Shaders/BasicMesh.frag"))
+	if (!mSpriteShader->Load("Shaders/Sprite.vert", "Shaders/Sprite.frag"))
 	{
 		return false;
 	}
 
 	mSpriteShader->SetActive();
+	// ビュー射影行列を作成し、設定
+	Matrix4 viewProj = Matrix4::CreateSimpleViewProj(Game::MWidth, Game::MHeight);
+	mSpriteShader->SetMatrixUniform("uViewProj", viewProj);
 
 	return true;
 }
@@ -177,6 +174,17 @@ void Renderer::AddSprite(SpriteComponent* _spriteComponent)
 
 void Renderer::Termination()
 {
+	delete mRenderer->mSpriteVerts;
+
+	mRenderer->mSpriteShader->Unload();
+	delete mRenderer->mSpriteShader;
+
 	SDL_DestroyRenderer(mRenderer->mSdlRenderer);
 	SDL_DestroyWindow(Game::mWindow);
+}
+
+
+void Renderer::UnloadData()
+{
+	
 }
