@@ -90,8 +90,7 @@ private:
 	// 各自のアクターが持つタグ
 	Tag mTag;
 
-	// ゲッター、セッター
-public:
+public:  // ゲッター、セッター
 	// アクターが生成された時のシーンを取得
 	SceneBase::Scene GetScene()const { return mDirthplaceScene; }
 

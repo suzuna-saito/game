@@ -28,8 +28,7 @@ private:
 	// 1フレーム前のキーボードの入力状態
 	Uint8 mPrevState[SDL_NUM_SCANCODES];
 
-	// ゲッター、セッター
-public:
+public:  // ゲッター、セッター
 	/// <summary>
 	/// 現在のキーの入力状態のみを取得する
 	/// </summary>
@@ -88,8 +87,7 @@ private:
 	// コントローラーが接続されたか
 	static bool mControllerConnected;
 
-	// ゲッター、セッター
-public:
+public:  // ゲッター、セッター
 	/// <summary>
 	/// 現在の入力状態を取得する
 	/// </summary>

@@ -1,14 +1,21 @@
 //-------------------------------------------------------------------------------------------+
-// フラグメントシェーダー
+// スプライト(2D)用フラグメントシェーダ
 //-------------------------------------------------------------------------------------------+
 
 // Request GLSL 3.3
 #version 330
 
-// This corresponds to the output color to the color buffer
+// 頂点シェーダーからの入力
+in vec2 FragTexCoords;       // テクスチャ座標
+
+// カラーバッファへの出力
 out vec4 outColor;
+
+// uniform
+uniform sampler2D uTexture;  // テクスチャサンプリング
 
 void main()
 {
-	outColor = vec4(0.0,0.0,1.0,1.0);
+	// テクスチャからカラーをサンプリング
+	outColor = texture(uTexture,FragTexCoords);
 }

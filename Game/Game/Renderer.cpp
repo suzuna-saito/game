@@ -62,7 +62,25 @@ void Renderer::Draw()
 	// カラーバッファをクリア
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	// @@@ スプライトの描画をしないならいらない
+	// mSpritesの中にデータがあれば
+	if (mRenderer->mSprites.size() != 0)
+	{
+		// スプライトの描画
+		mRenderer->SpriteDraw();
+	}
+
+	// バッファを交換、これでシーンが表示される
+	SDL_GL_SwapWindow(Game::mWindow);
+}
+
+void Renderer::SpriteDraw()
+{
+	// Spriteの描画。αブレンドを有効にする
+	glEnable(GL_BLEND);
+	glBlendFunc(
+		GL_SRC_ALPHA,             // srcFactorはsrcAlpha
+		GL_ONE_MINUS_SRC_ALPHA);  // dstFactorは(1-srcAlpha)
+
 	// スプライトシェーダーをアクティブにする
 	// スプライト頂点配列を有効にする
 	mRenderer->mSpriteShader->SetActive();
@@ -72,9 +90,6 @@ void Renderer::Draw()
 	{
 		sprite->Draw(mRenderer->mSpriteShader);
 	}
-
-	// バッファを交換、これでシーンが表示される
-	SDL_GL_SwapWindow(Game::mWindow);
 }
 
 bool Renderer::LoadShaders()
@@ -120,17 +135,15 @@ void Renderer::RemoveSprite(SpriteComponent* _spriteComponent)
 	mRenderer->mSprites.erase(iter);
 }
 
-SDL_Texture* Renderer::GetTexture(const string& _fileName)
+Texture* Renderer::GetTexture(const string& _fileName)
 {
 	Texture* texture = nullptr;
 
-	// 現在の要素
-	SDL_Texture* nowTexture = nullptr;
 	// すでに作成されていないか調べる
 	auto itr = mTextures.find(_fileName);
 	if (itr != mTextures.end())
 	{
-		nowTexture = itr->second;
+		texture = itr->second;
 	}
 	// 作成済みでない場合、新しくテクスチャを作成
 	else
@@ -139,7 +152,7 @@ SDL_Texture* Renderer::GetTexture(const string& _fileName)
 		if (texture->Load(_fileName))
 		{
 			// mTexturesに要素を構築
-			mTextures.emplace(_fileName, nowTexture);
+			mTextures.emplace(_fileName, texture);
 		}
 		// テクスチャの読み込みが出来なかったら
 		else
@@ -149,7 +162,7 @@ SDL_Texture* Renderer::GetTexture(const string& _fileName)
 		}
 	}
 
-	return nowTexture;
+	return texture;
 }
 
 void Renderer::AddSprite(SpriteComponent* _spriteComponent)

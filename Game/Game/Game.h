@@ -54,8 +54,7 @@ private:
 	// ゲームを続行するかどうか
 	bool mIsRunningFlag;
 
-	// ゲッター、セッター
-public:
+public: // ゲッター、セッター
 	// 最初のシーンをセット
 	void SetFirstScene(SceneBase* _firstScene) { mNowScene = _firstScene; }
 };

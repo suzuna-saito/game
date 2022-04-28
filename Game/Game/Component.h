@@ -41,8 +41,8 @@ protected:
 	// コンポーネントの更新順序
 	int mUpdateOrder;
 
-	// ゲッター、セッター
-public:
+public:  // ゲッター、セッター
+	// コンポーネントの更新順序を取得
 	int GetUpdateOder() { return mUpdateOrder; }
 };
 

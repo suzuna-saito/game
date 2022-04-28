@@ -18,21 +18,21 @@ public:
 	/// <returns>true : 成功 , false : 失敗</returns>
 	bool Load(const string& _fileName);
 
-private:
-	// Surfaceから変換されたテクスチャ
-	SDL_Texture* mTex;
+	// ロードしたテクスチャの解放
+	void Unload();
 
+private:
+	// このテクスチャのOpenGL ID
+	unsigned int mTextureID;
+	
 	// テクスチャの横幅
 	int mWidth;
 	// テクスチャの縦幅
 	int mHeight;
 
-	// ゲッター、セッター
-public:
-	// @@@
-	// Surfaceから変換されたテクスチャを取得
-	SDL_Texture* GetTexture() const { return mTex; }
-
+public:  // ゲッター、セッター
+	// テクスチャIDを取得
+	int GetTextureID()const { return mTextureID; }
 	// テクスチャの横幅を取得
 	int GetWidth() const { return mWidth; }
 	// テクスチャの縦幅を取得

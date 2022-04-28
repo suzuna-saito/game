@@ -45,7 +45,6 @@ VertexArray::VertexArray(const float* _verts, unsigned int _numVerts, const unsi
 
 	// 最初の頂点属性を有効にする(位置座標)
 	glEnableVertexAttribArray(0);
-
 	// 属性のサイズ、種類、フォーマットを指定
 	glVertexAttribPointer(
 		0,					// 頂点属性インデックス（位置座標）
@@ -56,8 +55,29 @@ VertexArray::VertexArray(const float* _verts, unsigned int _numVerts, const unsi
 		0					// 頂点データの開始位置からこの属性までのオフセット
 	);
 
-	// @@@
-	// 第二、第三の頂点属性を有効に
+	//第2の頂点属性を有効に（法線ベクトル）
+	glEnableVertexAttribArray(1);
+	// 属性のサイズ、種類、フォーマットを指定
+	glVertexAttribPointer(
+		1,					// 頂点属性インデックス（法線ベクトル）
+		3,					// 要素の数
+		GL_FLOAT,			// 要素の型
+		GL_FALSE,			// （GL_FLOATには使わない）
+		sizeof(float) * 8,	// 各頂点のサイズ
+		reinterpret_cast<void*>(sizeof(float) * 3)	//オフセットポインタ
+	);
+
+	//第3の頂点属性を有効に（テクスチャ座標）
+	glEnableVertexAttribArray(2);
+	// 属性のサイズ、種類、フォーマットを指定
+	glVertexAttribPointer(
+		2,					// 頂点属性インデックス（テクスチャ座標）
+		2,					// 要素の数（UVは2個）
+		GL_FLOAT,			// 要素の型
+		GL_FALSE,			// （GL_FLOATには使わない）
+		sizeof(float) * 8,	// 各頂点のサイズ
+		reinterpret_cast<void*>(sizeof(float) * 6)	//オフセットポインタ
+	);
 }
 
 VertexArray::~VertexArray()

@@ -44,14 +44,16 @@ private:
 	// @@@ 使わなかったら消して
 	// Sprite(2D用)の頂点バッファとインデックスバッファの作成
 	void CreateSpriteVerts();
+	// スプライトの描画処理
+	void SpriteDraw();
 
 	// レンダラーの状態を含む構造体
 	SDL_Renderer* mSdlRenderer;
 
 	// スプライトコンポーネントの配列
 	vector<SpriteComponent*>mSprites;
-	// テクスチャを保管している連想配列 gluint型
-	unordered_map<string, SDL_Texture*>mTextures;
+	// テクスチャを保管している連想配列
+	unordered_map<string, Texture*>mTextures;
 
 	/* クラスのポインタ */
 	// スプライト
@@ -59,12 +61,8 @@ private:
 	// スプライト用頂点
 	VertexArray* mSpriteVerts;
 
-	//ゲッターセッター
-public:
-	// レンダラーの状態を含む構造体の取得
-	static SDL_Renderer* GetSDLRenderer() { return mRenderer->mSdlRenderer; }
-
+public:  //ゲッターセッター
 	// 使用したいテクスチャを取得
-	SDL_Texture* GetTexture(const string& _fileName);
+	Texture* GetTexture(const string& _fileName);
 };
 

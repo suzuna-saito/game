@@ -16,6 +16,5 @@ public:
 
 	// 毎フレームの更新処理
 	SceneBase* Update() override;
-
 };
 

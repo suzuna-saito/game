@@ -35,6 +35,5 @@ protected:
 	// Ÿ‚ÌƒV[ƒ“‚É‘JˆÚ‚·‚é‚©
 	// true : ‚·‚é false : ‚µ‚È‚¢
 	bool mSceneTransitionFlag;
-
 };
 

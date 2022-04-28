@@ -42,8 +42,7 @@ private:
 	// 頂点配列オブジェクトのOpenGL ID
 	unsigned int mVertexArray;
 
-	// ゲッター、セッター
-public:
+public:  // ゲッター、セッター
 	// インデックスバッファにあるインデックスの数を取得する
 	unsigned int GetNumIndices() const { return mNumIndices; }
 	// 頂点バッファにある頂点の数を取得する
