@@ -58,7 +58,7 @@ void Renderer::Draw()
 {
 	//@@@(設定しなかったら黒になる)
 	// クリアカラーを好きなように設定
-	glClearColor(0.2f, 0.0f, 0.4f, 0.5f);
+	glClearColor(1.0f, 1.0f, 1.0f, 0.5f);
 	// カラーバッファをクリア
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -163,6 +163,11 @@ Texture* Renderer::GetTexture(const string& _fileName)
 	}
 
 	return texture;
+}
+
+Mesh* Renderer::GetMesh(const string& _fileName)
+{
+	return nullptr;
 }
 
 void Renderer::AddSprite(SpriteComponent* _spriteComponent)

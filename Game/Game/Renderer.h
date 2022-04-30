@@ -64,5 +64,8 @@ private:
 public:  //ゲッターセッター
 	// 使用したいテクスチャを取得
 	Texture* GetTexture(const string& _fileName);
+
+	// 使用したいメッシュを取得
+	Mesh* GetMesh(const string& _fileName);
 };
 

@@ -46,6 +46,15 @@
     <Filter Include="Shader\GLSL">
       <UniqueIdentifier>{ad24bcb7-239d-476a-b216-e6b13fe5f86a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component\Sprite">
+      <UniqueIdentifier>{4e1c8adc-7269-4612-8ccc-26afd448c202}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Move">
+      <UniqueIdentifier>{a4d5713c-f73c-4e91-a72b-7b04a5788611}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Mesh">
+      <UniqueIdentifier>{3984a176-3e5f-4390-9c39-2b8d76c33d7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Renderer.cpp">
@@ -93,11 +102,17 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Renderer\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteComponent.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
+      <Filter>Component\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveComponent.cpp">
+      <Filter>Component\Move</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Renderer\Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,11 +160,17 @@
     <ClInclude Include="Texture.h">
       <Filter>Renderer\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteComponent.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Component\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>Component\Move</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Renderer\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

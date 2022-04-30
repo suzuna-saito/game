@@ -35,7 +35,7 @@ void Actor::UpdateComponents(float _deltaTime)
 	for (auto cmp : mComponents)
 	{
 		// 各コンポーネントを更新
-		cmp->CmpUpdate(_deltaTime);
+		cmp->Update(_deltaTime);
 	}
 }
 
@@ -61,10 +61,10 @@ void Actor::ComputeWorldTransform()
 	if (mRecomputeWorldTransform)
 	{
 		mRecomputeWorldTransform = false;
-
+		
 		// スケールのワールド変換
 		mWorldTransform = Matrix4::CreateScale(mScale);
-		// 回転のワールド変換
+		// 回転のワールド変換(クォータニオン)
 		mWorldTransform *= Matrix4::CreateFromQuaternion(mRotation);
 		// 平行移動のワールド変換
 		mWorldTransform *= Matrix4::CreateTranslation(mPos);

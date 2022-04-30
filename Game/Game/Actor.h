@@ -97,7 +97,20 @@ public:  // ゲッター、セッター
 	// アクターの状態を取得
 	State GetState()const { return mState; }
 
+	// アクターのポジションを取得
+	const Vector3& GetPosition()const { return mPos; }
+	// アクターの向きを取得
+	const Quaternion& GetRotation()const { return mRotation; }
+
 	// アクターのワールド行列を取得
 	const Matrix4& GetWorldTransform()const { return mWorldTransform; }
+
+	// アクターの前方を表すベクトルを取得
+	Vector3 GetForward()const { return Vector3::Transform(Vector3::UnitY, mRotation); }
+
+	// アクターのポジションをセット(mRecomputeWorldTransformをtrueにする)
+	void SetPosition(const Vector3& _pos) { mPos = _pos; mRecomputeWorldTransform = true; }
+	// アクターの向きをセット(mRecomputeWorldTransformをtrueにする)
+	void SetRotation(const Quaternion& _qotation) { mRotation = _qotation; mRecomputeWorldTransform = true; }
 };
 

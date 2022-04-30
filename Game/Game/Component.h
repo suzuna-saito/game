@@ -29,7 +29,7 @@ public:
 	/// フレーム毎の処理
 	/// </summary>
 	/// <param name="_deltaTime">最後のフレームを完了するのに要した時間</param>
-	virtual void CmpUpdate(float _deltaTime) = 0;
+	virtual void Update(float _deltaTime) {};
 
 	// 所有アクターのワールド変換が更新されたら通知される
 	virtual void OnUpdateWorldTransform() {}

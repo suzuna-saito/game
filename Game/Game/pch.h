@@ -28,11 +28,13 @@ using namespace std;
 
 // Component
 #include "Component.h"
+#include "MoveComponent.h"
 #include "SpriteComponent.h"
 
 // Renderer
 #include "Texture.h"
 #include "VertexArray.h"
+#include "Mesh.h"
 #include "Renderer.h"
 
 // Scene

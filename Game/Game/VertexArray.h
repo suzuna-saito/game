@@ -7,12 +7,12 @@ class VertexArray
 {
 public:
 	// 頂点レイアウト
-	enum Layout
+	enum class Layout :unsigned char
 	{
 		//位置&法線&テクスチャUV を持ったフォーマット
-		PosNormTex,
+		ePosNormTex,
 		//位置&法線&"スキン用の影響ボーン＆重み情報" & テクスチャUV 
-		PosNormSkinTex
+		ePosNormSkinTex
 	};
 
 	/// <summary>
