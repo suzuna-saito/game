@@ -22,8 +22,9 @@ public:
 	/// <param name="_numVerts">頂点数</param>
 	/// <param name="_indices">インデックスバッファの配列のポインタ</param>
 	/// <param name="_numIndices">インデックスの数</param>
-	VertexArray(const float* _verts, unsigned int _numVerts,
-		const unsigned int* _indices, unsigned int _numIndices);
+	/// <param name="_layout">頂点レイアウト</param>
+	VertexArray(const void* _verts, unsigned int _numVerts,
+		const unsigned int* _indices, unsigned int _numIndices,Layout _layout = Layout::ePosNormTex);
 	// デストラクタ
 	~VertexArray();
 
@@ -31,6 +32,11 @@ public:
 	void SetActive();
 
 private:
+	// 頂点レイアウトがPosNormTexだった場合の処理
+	void IfPosNormTex(unsigned _vertexSize);
+	// 頂点レイアウトがPosNormSkinTexだった場合の処理
+	void IfPosNormSkinTex(unsigned _vertexSize);
+
 	// 頂点バッファにある頂点の数
 	unsigned int mNumVerts;
 	// インデックスバッファにあるインデックスの数

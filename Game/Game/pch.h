@@ -28,6 +28,7 @@ using namespace std;
 
 // Component
 #include "Component.h"
+#include "MeshComponent.h"
 #include "MoveComponent.h"
 #include "SpriteComponent.h"
 
@@ -43,6 +44,7 @@ using namespace std;
 
 // Actor
 #include "Actor.h"
+#include "Camera.h"
 #include "Ground.h"
 
 // ActorManager

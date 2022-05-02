@@ -71,8 +71,10 @@ bool Game::Initialize()
 	// FPS管理クラスの初期化
 	mFps = new FPS();
 
-	// オブジェクト管理クラスの初期化
+	// オブジェクト管理クラスの作成
 	ActorManager::CreateInstance();
+	// カメラクラスの作成
+	Camera::CreateInstance();
 
 	return true;
 }
@@ -118,9 +120,9 @@ void Game::Termination()
 	// データのアンロード
 	UnloadData();
 
-	// @@@
 	// 実体を一つしか持たないクラスの解放処理
 	ActorManager::DeleteInstance();
+	Camera::DeleteInstance();
 	Renderer::DeleteInstance();
 
 	// クラスの解放処理

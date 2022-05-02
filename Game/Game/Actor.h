@@ -20,6 +20,8 @@ public:
 	// アクターの種類判別タグ
 	enum class Tag :unsigned char
 	{
+		// カメラ
+		eCamera,
 		// 床
 		eGround,
 	};
@@ -61,7 +63,7 @@ public:
 	/// アクター独自の更新処理
 	/// </summary>
 	/// <param name="_deltaTime">最後のフレームを完了するのに要した時間</param>
-	virtual void UpdateActor(float _deltaTime) = 0;
+	virtual void UpdateActor(float _deltaTime) {};
 
 	// 個々の変換行列を作成
 	void ComputeWorldTransform();
@@ -93,7 +95,8 @@ private:
 public:  // ゲッター、セッター
 	// アクターが生成された時のシーンを取得
 	SceneBase::Scene GetScene()const { return mDirthplaceScene; }
-
+	// アクターのタグを取得
+	Tag GetTag()const { return mTag; }
 	// アクターの状態を取得
 	State GetState()const { return mState; }
 

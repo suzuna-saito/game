@@ -34,6 +34,11 @@ public:
 	// スプライトの削除
 	static void RemoveSprite(SpriteComponent* _spriteComponent);
 
+	// メッシュコンポーネントの追加
+	static void AddMeshComponent(MeshComponent* _meshComponent);
+	// メッシュコンポーネントの削除
+	static void RemoveMeshcomponent(MeshComponent* _meshComponent);
+
 	// レンダラーの実体（アプリ内に唯一存在）
 	static Renderer* mRenderer;
 
@@ -52,6 +57,8 @@ private:
 
 	// スプライトコンポーネントの配列
 	vector<SpriteComponent*>mSprites;
+	// メッシュコンポーネントの配列
+	vector<MeshComponent*>mMeshComponents;
 	// テクスチャを保管している連想配列
 	unordered_map<string, Texture*>mTextures;
 
@@ -63,9 +70,8 @@ private:
 
 public:  //ゲッターセッター
 	// 使用したいテクスチャを取得
-	Texture* GetTexture(const string& _fileName);
+	static Texture* GetTexture(const string& _fileName);
 
 	// 使用したいメッシュを取得
 	Mesh* GetMesh(const string& _fileName);
 };
-

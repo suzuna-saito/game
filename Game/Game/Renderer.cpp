@@ -129,47 +129,6 @@ void Renderer::CreateSpriteVerts()
 	mSpriteVerts = new VertexArray(vertices, 4, indices, 6);
 }
 
-void Renderer::RemoveSprite(SpriteComponent* _spriteComponent)
-{
-	auto iter = find(mRenderer->mSprites.begin(), mRenderer->mSprites.end(), _spriteComponent);
-	mRenderer->mSprites.erase(iter);
-}
-
-Texture* Renderer::GetTexture(const string& _fileName)
-{
-	Texture* texture = nullptr;
-
-	// すでに作成されていないか調べる
-	auto itr = mTextures.find(_fileName);
-	if (itr != mTextures.end())
-	{
-		texture = itr->second;
-	}
-	// 作成済みでない場合、新しくテクスチャを作成
-	else
-	{
-		texture = new Texture();
-		if (texture->Load(_fileName))
-		{
-			// mTexturesに要素を構築
-			mTextures.emplace(_fileName, texture);
-		}
-		// テクスチャの読み込みが出来なかったら
-		else
-		{
-			delete texture;
-			texture = nullptr;
-		}
-	}
-
-	return texture;
-}
-
-Mesh* Renderer::GetMesh(const string& _fileName)
-{
-	return nullptr;
-}
-
 void Renderer::AddSprite(SpriteComponent* _spriteComponent)
 {
 	// ソート済みの配列で挿入点を見つける
@@ -188,6 +147,76 @@ void Renderer::AddSprite(SpriteComponent* _spriteComponent)
 
 	// イテレータ―の位置の前に要素を挿入する
 	mRenderer->mSprites.insert(iter, _spriteComponent);
+}
+
+void Renderer::RemoveSprite(SpriteComponent* _spriteComponent)
+{
+	auto iter = find(mRenderer->mSprites.begin(), mRenderer->mSprites.end(), _spriteComponent);
+	mRenderer->mSprites.erase(iter);
+}
+
+void Renderer::AddMeshComponent(MeshComponent* _meshComponent)
+{
+	// スケルトンデータを用いる場合
+	if (_meshComponent->GetIsSkeltal())
+	{
+		// スケルタルメッシュコンポーネント
+	}
+	else
+	{
+		mRenderer->mMeshComponents.emplace_back(_meshComponent);
+	}
+}
+
+void Renderer::RemoveMeshcomponent(MeshComponent* _meshComponent)
+{
+	// スケルトンデータを用いる場合
+	if (_meshComponent->GetIsSkeltal())
+	{
+		// スケルタルメッシュコンポーネント
+	}
+	else
+	{
+		auto iter = find(mRenderer->mMeshComponents.begin(), mRenderer->mMeshComponents.end(),
+			_meshComponent);
+		mRenderer->mMeshComponents.erase(iter);
+	}
+
+}
+
+Texture* Renderer::GetTexture(const string& _fileName)
+{
+	Texture* texture = nullptr;
+
+	// すでに作成されていないか調べる
+	auto itr = mRenderer->mTextures.find(_fileName);
+	if (itr != mRenderer->mTextures.end())
+	{
+		texture = itr->second;
+	}
+	// 作成済みでない場合、新しくテクスチャを作成
+	else
+	{
+		texture = new Texture();
+		if (texture->Load(_fileName))
+		{
+			// mTexturesに要素を構築
+			mRenderer->mTextures.emplace(_fileName, texture);
+		}
+		// テクスチャの読み込みが出来なかったら
+		else
+		{
+			delete texture;
+			texture = nullptr;
+		}
+	}
+
+	return texture;
+}
+
+Mesh* Renderer::GetMesh(const string& _fileName)
+{
+	return nullptr;
 }
 
 void Renderer::Termination()

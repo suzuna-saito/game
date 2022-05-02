@@ -55,6 +55,12 @@
     <Filter Include="Renderer\Mesh">
       <UniqueIdentifier>{3984a176-3e5f-4390-9c39-2b8d76c33d7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Actor\Camera">
+      <UniqueIdentifier>{d32039af-8df2-4d40-9387-7850a53cf4ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Mesh">
+      <UniqueIdentifier>{ec7310a0-ffb3-4283-b7c3-04b6ee526526}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Renderer.cpp">
@@ -114,6 +120,12 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Renderer\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Actor\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshComponent.cpp">
+      <Filter>Component\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -171,6 +183,12 @@
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Renderer\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Actor\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshComponent.h">
+      <Filter>Component\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

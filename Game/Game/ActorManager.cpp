@@ -19,6 +19,12 @@ void ActorManager::CreateInstance()
 
 void ActorManager::DeleteInstance()
 {
+	// 残ってるアクターを全て削除する
+	for (auto actor : mManager->mActors)
+	{
+		delete actor;
+	}
+
 	if (mManager != nullptr)
 	{
 		// 削除
@@ -47,7 +53,9 @@ void ActorManager::RemoveActor()
 	for (auto actor : mManager->mActors)
 	{
 		// このアクターが生成されたシーンと現在のシーンが異なれば
-		if (actor->GetScene() != SceneBase::mIsScene)
+		// カメラは消さない
+		if (actor->GetScene() != SceneBase::mIsScene &&
+			actor->GetTag() != Actor::Tag::eCamera)
 		{
 			deleteActors.emplace_back(actor);
 		}
