@@ -37,7 +37,9 @@ void Camera::UpdateActor(float _deltaTime)
 	if (mCamera->mPrevious != mCamera->mPos)
 	{
 		// ƒrƒ…[s—ñ‚ðì¬
-		mView = Matrix4::CreateLookAt(mPos, mCamera->mViewpoint, Vector3::UnitZ);
+		Matrix4 view = Matrix4::CreateLookAt(mPos, mCamera->mViewpoint, Vector3::UnitZ);
+		Renderer::SetViewMatrix(view);
+
 		SetPosition(mPos);
 	}
 }

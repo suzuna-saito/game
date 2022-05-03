@@ -59,19 +59,31 @@ private:
 	vector<SpriteComponent*>mSprites;
 	// メッシュコンポーネントの配列
 	vector<MeshComponent*>mMeshComponents;
+
+	// メッシュを保管している連想配列
+	unordered_map<string, Mesh*>mMeshes;
 	// テクスチャを保管している連想配列
 	unordered_map<string, Texture*>mTextures;
 
 	/* クラスのポインタ */
 	// スプライト
 	Shader* mSpriteShader;
+	// メッシュ
+	Shader* mMeshShader;
 	// スプライト用頂点
 	VertexArray* mSpriteVerts;
 
+	// ビュー行列
+	Matrix4 mView;
+	// 射影行列
+	Matrix4 mProjection;
 public:  //ゲッターセッター
 	// 使用したいテクスチャを取得
 	static Texture* GetTexture(const string& _fileName);
 
 	// 使用したいメッシュを取得
-	Mesh* GetMesh(const string& _fileName);
+	static Mesh* GetMesh(const string& _fileName);
+
+	// ビュー行列をセットする
+	static void SetViewMatrix(const Matrix4& _view) { mRenderer->mView = _view; }
 };

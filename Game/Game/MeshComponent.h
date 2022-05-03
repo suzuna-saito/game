@@ -26,11 +26,14 @@ public:
 	virtual void Draw(Shader* _shader);
 
 protected:
+	/// <summary>
+	/// テクスチャタイプごとにセット
+	/// </summary>
+	/// <param name="_shader">使用するシェーダークラス</param>
+	void SetTextureToShader(Shader* _shader);
+
 	// メッシュデータ
 	Mesh* mMesh;
-
-	// インデックス
-	size_t mTextureIndex;
 
 	// スケルトンデータを用いるか
 	bool mSkeltonFlag;
@@ -40,6 +43,6 @@ public:  // ゲッター、セッター
 	bool GetIsSkeltal()const { return mSkeltonFlag; }
 
 	// メッシュコンポーネントが使うmMeshの設定
-	virtual void SstMesh(Mesh* _mesh) { mMesh = _mesh; }
+	virtual void SetMesh(Mesh* _mesh) { mMesh = _mesh; }
 };
 

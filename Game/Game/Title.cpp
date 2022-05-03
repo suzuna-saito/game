@@ -6,8 +6,12 @@ Title::Title(const Scene& _nowScene)
 	// 現在のシーンタグを更新
 	mIsScene = _nowScene;
 
-	// タイトル
-	printf("aaa\n");
+	mMapCreate = new MapCreate();
+
+	if (!mMapCreate->OpenFile())
+	{
+		mMapCreate->CreateGround();
+	}
 }
 
 Title::~Title()

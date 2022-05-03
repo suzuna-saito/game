@@ -23,9 +23,6 @@ private:
 	// Cameraの実体（アプリ内に唯一存在）
 	static Camera* mCamera;
 	
-	//ビュー行列
-	Matrix4 mView;
-
 	// 注視点
 	Vector3 mViewpoint;
 

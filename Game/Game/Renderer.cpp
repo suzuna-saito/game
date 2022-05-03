@@ -7,6 +7,7 @@ Renderer::Renderer()
 	: mSdlRenderer(nullptr)
 	, mSpriteVerts(nullptr)
 	, mSpriteShader(nullptr)
+	, mMeshShader(nullptr)
 {
 }
 
@@ -62,11 +63,33 @@ void Renderer::Draw()
 	// カラーバッファをクリア
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	// Spriteの描画。αブレンドを有効にする
+	glEnable(GL_BLEND);
+	glBlendFunc(
+		GL_SRC_ALPHA,             // srcFactorはsrcAlpha
+		GL_ONE_MINUS_SRC_ALPHA);  // dstFactorは(1-srcAlpha)
+
 	// mSpritesの中にデータがあれば
 	if (mRenderer->mSprites.size() != 0)
 	{
 		// スプライトの描画
 		mRenderer->SpriteDraw();
+	}
+
+	// デプスバッファ法有効 / αブレンディング無効
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_BLEND);
+
+	// メッシュコンポーネントの描画
+	// 基本的なメッシュシェーダーをアクティブにする
+	mRenderer->mMeshShader->SetActive();
+	// ビュー射影行列を更新する
+	mRenderer->mMeshShader->SetMatrixUniform("uViewProj", mRenderer->mView * mRenderer->mProjection);
+	// @@@ シェーダーに渡すライティング情報を更新する
+	// 全てのメッシュの描画
+	for (auto mc : mRenderer->mMeshComponents)
+	{
+		mc->Draw(mRenderer->mMeshShader);
 	}
 
 	// バッファを交換、これでシーンが表示される
@@ -75,12 +98,6 @@ void Renderer::Draw()
 
 void Renderer::SpriteDraw()
 {
-	// Spriteの描画。αブレンドを有効にする
-	glEnable(GL_BLEND);
-	glBlendFunc(
-		GL_SRC_ALPHA,             // srcFactorはsrcAlpha
-		GL_ONE_MINUS_SRC_ALPHA);  // dstFactorは(1-srcAlpha)
-
 	// スプライトシェーダーをアクティブにする
 	// スプライト頂点配列を有効にする
 	mRenderer->mSpriteShader->SetActive();
@@ -216,7 +233,30 @@ Texture* Renderer::GetTexture(const string& _fileName)
 
 Mesh* Renderer::GetMesh(const string& _fileName)
 {
-	return nullptr;
+	Mesh* m = nullptr;
+
+	// すでに作成されていないか調べる
+	auto itr = mRenderer->mMeshes.find(_fileName);
+	if (itr != mRenderer->mMeshes.end())
+	{
+		m = itr->second;
+	}
+	// 作成済みでない場合、新しくメッシュを作成
+	else
+	{
+		m = new Mesh();
+		if (m->Load(_fileName, mRenderer))
+		{
+			mRenderer->mMeshes.emplace(_fileName, m);
+		}
+		else
+		{
+			delete m;
+			m = nullptr;
+		}
+	}
+
+	return m;
 }
 
 void Renderer::Termination()
@@ -225,6 +265,9 @@ void Renderer::Termination()
 
 	mRenderer->mSpriteShader->Unload();
 	delete mRenderer->mSpriteShader;
+
+	mRenderer->mMeshShader->Unload();
+	delete mRenderer->mMeshShader;
 
 	SDL_DestroyRenderer(mRenderer->mSdlRenderer);
 	SDL_DestroyWindow(Game::mWindow);

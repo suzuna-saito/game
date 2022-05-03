@@ -31,10 +31,8 @@ void SpriteComponent::Draw(Shader* _shader)
 		// uWorldTransformの設定
 		_shader->SetMatrixUniform("uWorldTransform", world);
 
-		// テクスチャの下地の色を設定（白）
-		glActiveTexture(GL_TEXTURE0);
-		//  テクスチャをアクティブにする
-		glBindTexture(GL_TEXTURE_2D, mTexture->GetTextureID());
+		// テクスチャをセットし、アクティブにする
+		_shader->SetTexture(GL_TEXTURE0, GL_TEXTURE_2D, mTexture->GetTextureID());
 
 		// 矩形を描画
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);

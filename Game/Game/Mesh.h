@@ -26,6 +26,9 @@ public:
 		eSpecularMap,
 		// エミッシプ(放射光)
 		eEmissiveMap,
+
+		// このenumに含まれる個数
+		eEnd
 	};
 
 	// コンストラクタ
@@ -89,8 +92,11 @@ public:  // ゲッター、セッター
 	// このメッシュに割り当てられた頂点配列を取得
 	VertexArray* GetVertexArray() { return mVertexArray; }
 	
-	// インデックスからテクスチャを取得
-	Texture* GetTexture(size_t _index);
+	//// インデックスからテクスチャを取得
+	//Texture* GetTexture(size_t _index);
+
+	// テクスチャタイプに割り当てられたテクスチャを取得
+	int GetTextureID(TextureType _type) { return mTexturesByType[_type]; }
 
 	// シェーダ名を取得
 	const string& GetShaderName()const { return mShaderName; }

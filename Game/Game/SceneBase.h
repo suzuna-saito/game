@@ -1,5 +1,7 @@
 #pragma once
 
+class MapCreate;
+
 /*
 各シーンの基底クラス
 */
@@ -32,8 +34,10 @@ public:
 	static Scene mIsScene;
 
 protected:
+	// マップ生成
+	MapCreate* mMapCreate;
+
 	// 次のシーンに遷移するか
-	// true : する false : しない
 	bool mSceneTransitionFlag;
 };
 

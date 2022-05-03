@@ -45,11 +45,27 @@ void Shader::SetActive()
 	glUseProgram(mShaderProgram);
 }
 
+void Shader::SetTexture(GLenum _texture, GLenum _target, GLuint _textureID)
+{
+	// テクスチャの下地の色を設定
+	glActiveTexture(_texture);
+	// テクスチャをアクティブにする
+	glBindTexture(_target, _textureID);
+}
+
+void Shader::SetIntUniform(const char* _name, const int _value)
+{
+	// この名前のuniformを探す
+	GLuint loc = glGetUniformLocation(mShaderProgram, _name);
+	//シェーダーにintデータを送る
+	glUniform1i(loc, _value);
+}
+
 void Shader::SetMatrixUniform(const char* _name, const Matrix4& _matrix)
 {
 	// この名前のuniformを探す
 	GLuint loc = glGetUniformLocation(mShaderProgram, _name);
-	// uniformに行列データを送る
+	// シェーダーに行列データを送る
 	glUniformMatrix4fv(loc, 1, GL_TRUE, _matrix.GetAsFloatPtr());
 }
 

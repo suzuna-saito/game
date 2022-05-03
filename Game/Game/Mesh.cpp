@@ -285,7 +285,7 @@ void Mesh::IfPosNormSkinTex(const rapidjson::Value& _vert, vector<Vertex>& _vert
 	}
 }
 
-Texture* Mesh::GetTexture(size_t _index)
-{
-	return nullptr;
-}
+//Texture* Mesh::GetTexture(size_t _index)
+//{
+//	return nullptr;
+//}

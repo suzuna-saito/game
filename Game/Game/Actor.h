@@ -78,6 +78,9 @@ protected:
 	Vector3 mScale;
 	Quaternion mRotation;
 
+	// ゲームオブジェクトのメッシュ
+	MeshComponent* mMeshComponent;
+
 	// アクターのワールド行列
 	Matrix4 mWorldTransform;
 	// ワールド行列の再計算の必要性を管理
@@ -111,6 +114,8 @@ public:  // ゲッター、セッター
 	// アクターの前方を表すベクトルを取得
 	Vector3 GetForward()const { return Vector3::Transform(Vector3::UnitY, mRotation); }
 
+	// アクターのスケールをセット(mRecomputeWorldTransformをtrueにする)
+	void SetScale(const Vector3 _scale) { mScale = _scale; mRecomputeWorldTransform = true; }
 	// アクターのポジションをセット(mRecomputeWorldTransformをtrueにする)
 	void SetPosition(const Vector3& _pos) { mPos = _pos; mRecomputeWorldTransform = true; }
 	// アクターの向きをセット(mRecomputeWorldTransformをtrueにする)
