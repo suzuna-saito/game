@@ -72,7 +72,6 @@ protected:
 	// 各自のアクターの状態
 	State mState;
 
-	// @@@
 	// Transform
 	Vector3 mPos;
 	Vector3 mScale;

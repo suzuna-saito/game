@@ -21,7 +21,7 @@ bool Game::Initialize()
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | 
 		SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC) != 0)
 	{
-		SDL_Log("SDLを初期化できません : %s", SDL_GetError());
+		printf("SDLを初期化できません : %s", SDL_GetError());
 		return false;
 	}
 
@@ -29,7 +29,7 @@ bool Game::Initialize()
 	mInputSystem = new InputSystem();
 	if (!mInputSystem->Initialize())
 	{
-		SDL_Log("インプットシステムの初期化に失敗しました");
+		printf("インプットシステムの初期化に失敗しました");
 		return false;
 	}
 
@@ -41,7 +41,7 @@ bool Game::Initialize()
 	// mWindowが、nullptrだったら
 	if (!mWindow)
 	{
-		SDL_Log("ウィンドウの作成に失敗しました : %s", SDL_GetError());
+		printf("ウィンドウの作成に失敗しました : %s", SDL_GetError());
 		return false;
 	}
 
@@ -52,7 +52,7 @@ bool Game::Initialize()
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
 	{
-		SDL_Log("GLEWの初期化に失敗しました.");
+		printf("GLEWの初期化に失敗しました.");
 		return false;
 	}
 
@@ -63,7 +63,7 @@ bool Game::Initialize()
 	Renderer::CreateInstance();
 	if (!Renderer::Initialize())
 	{
-		SDL_Log("レンダラーの初期化に失敗しました");
+		printf("レンダラーの初期化に失敗しました\n");
 		Renderer::DeleteInstance();
 		return false;
 	}

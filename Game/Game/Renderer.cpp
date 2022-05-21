@@ -45,7 +45,7 @@ bool Renderer::Initialize()
 	// シェーダーのロード
 	if (!mRenderer->LoadShaders())
 	{
-		SDL_Log("シェーダーのロードに失敗しました");
+		printf("シェーダーのロードに失敗しました\n");
 		return false;
 	}
 
@@ -57,7 +57,7 @@ bool Renderer::Initialize()
 
 void Renderer::Draw()
 {
-	//@@@(設定しなかったら黒になる)
+	//@@(設定しなかったら黒になる)
 	// クリアカラーを好きなように設定
 	glClearColor(1.0f, 1.0f, 1.0f, 0.5f);
 	// カラーバッファをクリア
@@ -100,12 +100,12 @@ void Renderer::SpriteDraw()
 {
 	// スプライトシェーダーをアクティブにする
 	// スプライト頂点配列を有効にする
-	mRenderer->mSpriteShader->SetActive();
-	mRenderer->mSpriteVerts->SetActive();
+	mSpriteShader->SetActive();
+	mSpriteVerts->SetActive();
 	// 全てのスプライトの描画
-	for (auto sprite : mRenderer->mSprites)
+	for (auto sprite : mSprites)
 	{
-		sprite->Draw(mRenderer->mSpriteShader);
+		sprite->Draw(mSpriteShader);
 	}
 }
 
@@ -122,6 +122,14 @@ bool Renderer::LoadShaders()
 	// ビュー射影行列を作成し、設定
 	Matrix4 viewProj = Matrix4::CreateSimpleViewProj(Game::MWidth, Game::MHeight);
 	mSpriteShader->SetMatrixUniform("uViewProj", viewProj);
+
+	// @@@ 後で読み取るファイル変えといて
+	// 標準メッシュシェーダーの作成
+	mMeshShader = new Shader();
+	if (!mMeshShader->Load("Shaders/Sprite.vert", "Shaders/Sprite.frag"))
+	{
+		return false;
+	}
 
 	return true;
 }

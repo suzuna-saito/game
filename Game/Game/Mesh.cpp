@@ -19,7 +19,7 @@ bool Mesh::Load(const string& _fileName, Renderer* _renderer)
 	ifstream file(_fileName);
 	if (!file.is_open())
 	{
-		SDL_Log("ファイルが見つかりませんでした : Mesh %s", _fileName.c_str());
+		printf("ファイルが見つかりませんでした : Mesh %s", _fileName.c_str());
 		return false;
 	}
 
@@ -36,7 +36,7 @@ bool Mesh::Load(const string& _fileName, Renderer* _renderer)
 	// JSONオブジェクトか？
 	if (!doc.IsObject())
 	{
-		SDL_Log("Mesh %s は非有効なjsonです", _fileName.c_str());
+		printf("Mesh %s は非有効なjsonです", _fileName.c_str());
 		return false;
 	}
 
@@ -68,7 +68,7 @@ bool Mesh::Load(const string& _fileName, Renderer* _renderer)
 	const rapidjson::Value& textures = doc["textures"];
 	if (!textures.IsArray() || textures.Size() < 1)
 	{
-		SDL_Log("Mesh %s にtexturesがありません", _fileName.c_str());
+		printf("Mesh %s にtexturesがありません", _fileName.c_str());
 		return false;
 	}
 
@@ -117,7 +117,7 @@ bool Mesh::Load(const string& _fileName, Renderer* _renderer)
 	const rapidjson::Value& VertsJson = doc["vertices"];
 	if (!VertsJson.IsArray() || VertsJson.Size() < 1)
 	{
-		SDL_Log("Mesh %s にverticesがありません", _fileName.c_str());
+		printf("Mesh %s にverticesがありません", _fileName.c_str());
 		return false;
 	}
 
@@ -132,7 +132,7 @@ bool Mesh::Load(const string& _fileName, Renderer* _renderer)
 		const rapidjson::Value& Vert = VertsJson[i];
 		if (!Vert.IsArray())
 		{
-			SDL_Log("予期しない頂点フォーマットです %s", _fileName.c_str());
+			printf("予期しない頂点フォーマットです %s", _fileName.c_str());
 			return false;
 		}
 		///////////////////////////////////////////////////////////////////////////////
@@ -160,7 +160,7 @@ bool Mesh::Load(const string& _fileName, Renderer* _renderer)
 	const rapidjson::Value& IndJson = doc["indices"];
 	if (!IndJson.IsArray() || IndJson.Size() < 1)
 	{
-		SDL_Log("Mesh %s にindicesはありません", _fileName.c_str());
+		printf("Mesh %s にindicesはありません", _fileName.c_str());
 		return false;
 	}
 
@@ -172,7 +172,7 @@ bool Mesh::Load(const string& _fileName, Renderer* _renderer)
 		const rapidjson::Value& Ind = IndJson[i];
 		if (!Ind.IsArray() || Ind.Size() != 3)
 		{
-			SDL_Log("無効なインデックスです %s", _fileName.c_str());
+			printf("無効なインデックスです %s", _fileName.c_str());
 			return false;
 		}
 

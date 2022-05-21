@@ -6,7 +6,7 @@
 #version 330
 
 // 頂点シェーダーからの入力
-in vec2 FragTexCoords;       // テクスチャ座標
+in vec2 fragTexCoord;       // テクスチャ座標
 
 // カラーバッファへの出力
 out vec4 outColor;
@@ -17,5 +17,5 @@ uniform sampler2D uTexture;  // テクスチャサンプリング
 void main()
 {
 	// テクスチャからカラーをサンプリング
-	outColor = texture(uTexture,FragTexCoords);
+	outColor = texture(uTexture,fragTexCoord);
 }

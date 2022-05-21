@@ -92,13 +92,13 @@ bool Shader::CompileShader(const string& _fileName, GLenum _shaderType, GLuint& 
 		// シェーダーが正常にコンパイルされたかどうか
 		if (!IsCompiled(_outShader))
 		{
-			SDL_Log("シェーダー %s のコンパイルに失敗しました", _fileName.c_str());
+			printf("シェーダー %s のコンパイルに失敗しました", _fileName.c_str());
 			return false;
 		}
 	}
 	else
 	{
-		SDL_Log("シェーダーファイル %s が見つかりません", _fileName.c_str());
+		printf("シェーダーファイル %s が見つかりません", _fileName.c_str());
 		return false;
 	}
 
@@ -118,7 +118,7 @@ bool Shader::IsCompiled(GLuint _shader)
 		memset(buffer, 0, 512);
 		// コンパイルエラーメッセージを取得
 		glGetShaderInfoLog(_shader, 511, nullptr, buffer);
-		SDL_Log("GLSLのコンパイルが失敗しました : \n%s", buffer);
+		printf("GLSLのコンパイルが失敗しました : \n%s", buffer);
 		return false;
 	}
 
@@ -137,7 +137,7 @@ bool Shader::IsValidProgram()
 		memset(buffer, 0, 512);
 		// エラーメッセージを取得
 		glGetProgramInfoLog(mShaderProgram, 511, nullptr, buffer);
-		SDL_Log("GLSLのリンクが失敗しました : \n%s", buffer);
+		printf("GLSLのリンクが失敗しました : \n%s", buffer);
 		return false;
 	}
 
