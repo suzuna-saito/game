@@ -34,10 +34,10 @@ void Camera::DeleteInstance()
 void Camera::UpdateActor(float _deltaTime)
 {
 	// カメラ位置が変わっていたら更新する
-	if (mCamera->mPrevious != mCamera->mPos)
+	if (mPrevious != mPos)
 	{
 		// ビュー行列を作成
-		Matrix4 view = Matrix4::CreateLookAt(mPos, mCamera->mViewpoint, Vector3::UnitZ);
+		Matrix4 view = Matrix4::CreateLookAt(mPos, mViewpoint, Vector3::UnitZ);
 		Renderer::SetViewMatrix(view);
 
 		SetPosition(mPos);

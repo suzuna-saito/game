@@ -9,6 +9,7 @@ Actor::Actor(const SceneBase::Scene& _nowScene, const Tag& _actorTag)
 	, mRotation(Quaternion::Identity)
 	, mWorldTransform(Matrix4::Identity)
 	, mRecomputeWorldTransform(true)
+	, mMeshComponent(nullptr)
 {
 	// アクターを追加する
 	ActorManager::AddActor(this);

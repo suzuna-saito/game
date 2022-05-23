@@ -37,7 +37,7 @@ bool Game::Initialize()
 	// 作成前に色深度などの属性を設定する
 	OpenGLSetup();
 	// タイトル、x座標、y座標、幅、高さ、フラグ
-	mWindow = SDL_CreateWindow("Game", 0, 0, MWidth, MHeight, SDL_WINDOW_OPENGL);
+	mWindow = SDL_CreateWindow("Game", 0, 0, (int)MWidth, (int)MHeight, SDL_WINDOW_OPENGL);
 	// mWindowが、nullptrだったら
 	if (!mWindow)
 	{
@@ -121,9 +121,8 @@ void Game::Termination()
 	UnloadData();
 
 	// 実体を一つしか持たないクラスの解放処理
-	ActorManager::DeleteInstance();
-	Camera::DeleteInstance();
 	Renderer::DeleteInstance();
+	ActorManager::DeleteInstance();
 
 	// クラスの解放処理
 	delete mFps;

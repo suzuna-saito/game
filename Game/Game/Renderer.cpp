@@ -59,7 +59,7 @@ void Renderer::Draw()
 {
 	//@@(設定しなかったら黒になる)
 	// クリアカラーを好きなように設定
-	glClearColor(1.0f, 1.0f, 1.0f, 0.5f);
+	/*glClearColor(1.0f, 1.0f, 1.0f, 0.5f);*/
 	// カラーバッファをクリア
 	glClear(GL_COLOR_BUFFER_BIT);
 

@@ -77,13 +77,13 @@ protected:
 	Vector3 mScale;
 	Quaternion mRotation;
 
-	// ゲームオブジェクトのメッシュ
-	MeshComponent* mMeshComponent;
-
 	// アクターのワールド行列
 	Matrix4 mWorldTransform;
 	// ワールド行列の再計算の必要性を管理
 	bool mRecomputeWorldTransform;
+
+	// ゲームオブジェクトのメッシュ
+	MeshComponent* mMeshComponent;
 
 	// 各自のアクターが持つコンポーネント
 	vector<Component*>mComponents;
