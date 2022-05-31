@@ -198,5 +198,11 @@
     <None Include="Shaders\Sprite.vert">
       <Filter>Shader\GLSL</Filter>
     </None>
+    <None Include="Shaders\Phong.vert">
+      <Filter>Shader\GLSL</Filter>
+    </None>
+    <None Include="Shaders\Phong.frag">
+      <Filter>Shader\GLSL</Filter>
+    </None>
   </ItemGroup>
 </Project>

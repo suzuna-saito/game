@@ -10,12 +10,12 @@ layout(location = 0) in vec3 inPosition;  // 頂点座標
 layout(location = 1) in vec3 inNormal;    // 法線
 layout(location = 2) in vec2 inTexCoord;  // テクスチャ座標(UV)
 
-// フラグメントシェーダへの出力
-out vec2 fragTexCoord;
-
 // Uniform指定子
 uniform mat4 uWorldTransform;   // ワールド変換行列
 uniform mat4 uViewProj;         // ビュー * プロジェクションの合成行列
+
+// フラグメントシェーダへの出力
+out vec2 fragTexCoord;
 
 void main()
 {

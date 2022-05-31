@@ -241,6 +241,8 @@
     <ClInclude Include="VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\Phong.frag" />
+    <None Include="Shaders\Phong.vert" />
     <None Include="Shaders\Sprite.frag" />
     <None Include="Shaders\Sprite.vert" />
   </ItemGroup>
