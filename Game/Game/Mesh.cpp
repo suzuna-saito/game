@@ -102,7 +102,6 @@ bool Mesh::Load(const string& _fileName, Renderer* _renderer)
 		// メッシュのテクスチャ群に追加
 		mTextures.emplace_back(t);
 
-		// @@@　？？？
 		// テクスチャが一つの時はdiffusemapのみ所持してる？
 		if (textures.Size() == 1)
 		{

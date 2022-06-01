@@ -119,16 +119,15 @@ bool Renderer::LoadShaders()
 	Matrix4 viewProj = Matrix4::CreateSimpleViewProj(Game::MWidth, Game::MHeight);
 	mSpriteShader->SetMatrixUniform("uViewProj", viewProj);
 
-	// @@@ 後で読み取るファイル変えといて
 	// 標準メッシュシェーダーの作成
 	mMeshShader = new Shader();
-	if (!mMeshShader->Load("Shaders/Sprite.vert", "Shaders/Sprite.frag"))
+	if (!mMeshShader->Load("Shaders/Phong.vert", "Shaders/Phong.frag"))
 	{
 		return false;
 	}
 	mMeshShader->SetActive();
 	// ビュー射影行列を作成し、設定
-	mMeshShader->SetMatrixUniform()
+	mMeshShader->SetMatrixUniform("uViewProj", mView * mProjection);
 
 	return true;
 }
