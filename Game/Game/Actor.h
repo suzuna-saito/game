@@ -20,6 +20,8 @@ public:
 	// アクターの種類判別タグ
 	enum class Tag :unsigned char
 	{
+		// カメラ
+		eCamera,
 		// 床
 		eGround,
 	};
@@ -61,29 +63,61 @@ public:
 	/// アクター独自の更新処理
 	/// </summary>
 	/// <param name="_deltaTime">最後のフレームを完了するのに要した時間</param>
-	virtual void UpdateActor(float _deltaTime) = 0;
+	virtual void UpdateActor(float _deltaTime) {};
+
+	// 個々の変換行列を作成
+	void ComputeWorldTransform();
 
 protected:
-	// 各自のアクターを生成したシーン
-	SceneBase::Scene mDirthplaceScene;
 	// 各自のアクターの状態
 	State mState;
-	// 各自のアクターが持つタグ
-	Tag mTag;
 
-	// @@@
 	// Transform
+	Vector3 mPos;
+	Vector3 mScale;
+	Quaternion mRotation;
 
+	// アクターのワールド行列
+	Matrix4 mWorldTransform;
+	// ワールド行列の再計算の必要性を管理
+	bool mRecomputeWorldTransform;
+
+	// ゲームオブジェクトのメッシュ
+	MeshComponent* mMeshComponent;
 
 	// 各自のアクターが持つコンポーネント
 	vector<Component*>mComponents;
 
-	// ゲッター、セッター
-public:
+private:
+	// 各自のアクターを生成したシーン
+	SceneBase::Scene mDirthplaceScene;
+	// 各自のアクターが持つタグ
+	Tag mTag;
+
+public:  // ゲッター、セッター
 	// アクターが生成された時のシーンを取得
 	SceneBase::Scene GetScene()const { return mDirthplaceScene; }
+	// アクターのタグを取得
+	Tag GetTag()const { return mTag; }
 	// アクターの状態を取得
 	State GetState()const { return mState; }
 
+	// アクターのポジションを取得
+	const Vector3& GetPosition()const { return mPos; }
+	// アクターの向きを取得
+	const Quaternion& GetRotation()const { return mRotation; }
+
+	// アクターのワールド行列を取得
+	const Matrix4& GetWorldTransform()const { return mWorldTransform; }
+
+	// アクターの前方を表すベクトルを取得
+	Vector3 GetForward()const { return Vector3::Transform(Vector3::UnitY, mRotation); }
+
+	// アクターのスケールをセット(mRecomputeWorldTransformをtrueにする)
+	void SetScale(const Vector3 _scale) { mScale = _scale; mRecomputeWorldTransform = true; }
+	// アクターのポジションをセット(mRecomputeWorldTransformをtrueにする)
+	void SetPosition(const Vector3& _pos) { mPos = _pos; mRecomputeWorldTransform = true; }
+	// アクターの向きをセット(mRecomputeWorldTransformをtrueにする)
+	void SetRotation(const Quaternion& _qotation) { mRotation = _qotation; mRecomputeWorldTransform = true; }
 };
 

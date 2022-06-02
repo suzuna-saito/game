@@ -1,0 +1,83 @@
+﻿  pch.cpp
+  Camera.cpp
+  Component.cpp
+  FPS.cpp
+  Game.cpp
+  Actor.cpp
+  Ground.cpp
+  InputSystem.cpp
+  main.cpp
+  MapCreate.cpp
+C:\Users\student\Desktop\game\Game\Game\MapCreate.cpp(23,31): warning C4244: '=': 'unsigned __int64' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\student\Desktop\game\Game\Game\MapCreate.cpp(24,28): warning C4244: '=': 'unsigned __int64' から 'float' への変換です。データが失われる可能性があります。
+  Math.cpp
+  ActorManager.cpp
+  Mesh.cpp
+C:\Users\student\Desktop\game\Game\Game\Mesh.cpp(185,65): warning C4267: '引数': 'size_t' から 'unsigned int' に変換しました。データが失われているかもしれません。
+  MeshComponent.cpp
+  MoveComponent.cpp
+  Renderer.cpp
+  SceneBase.cpp
+  Shader.cpp
+  SpriteComponent.cpp
+  Texture.cpp
+  Title.cpp
+  コードを生成中...
+  コンパイル中...
+  VertexArray.cpp
+  コードを生成中...
+  RapidJsonHelper.cpp
+FPS.obj : error LNK2019: 未解決の外部シンボル SDL_GetTicks が関数 "public: void __cdecl FPS::Update(void)" (?Update@FPS@@QEAAXXZ) で参照されました
+Game.obj : error LNK2019: 未解決の外部シンボル __imp_glewInit が関数 "public: bool __cdecl Game::Initialize(void)" (?Initialize@Game@@QEAA_NXZ) で参照されました
+Game.obj : error LNK2019: 未解決の外部シンボル SDL_GetError が関数 "public: bool __cdecl Game::Initialize(void)" (?Initialize@Game@@QEAA_NXZ) で参照されました
+Renderer.obj : error LNK2001: 外部シンボル SDL_GetError は未解決です
+Game.obj : error LNK2019: 未解決の外部シンボル SDL_CreateWindow が関数 "public: bool __cdecl Game::Initialize(void)" (?Initialize@Game@@QEAA_NXZ) で参照されました
+Game.obj : error LNK2019: 未解決の外部シンボル SDL_GL_SetAttribute が関数 "private: void __cdecl Game::OpenGLSetup(void)" (?OpenGLSetup@Game@@AEAAXXZ) で参照されました
+Game.obj : error LNK2019: 未解決の外部シンボル SDL_GL_CreateContext が関数 "public: bool __cdecl Game::Initialize(void)" (?Initialize@Game@@QEAA_NXZ) で参照されました
+Game.obj : error LNK2019: 未解決の外部シンボル SDL_PollEvent が関数 "private: void __cdecl Game::ProcessInput(void)" (?ProcessInput@Game@@AEAAXXZ) で参照されました
+Game.obj : error LNK2019: 未解決の外部シンボル SDL_Init が関数 "public: bool __cdecl Game::Initialize(void)" (?Initialize@Game@@QEAA_NXZ) で参照されました
+Game.obj : error LNK2019: 未解決の外部シンボル SDL_Quit が関数 "public: void __cdecl Game::Termination(void)" (?Termination@Game@@QEAAXXZ) で参照されました
+Game.obj : error LNK2019: 未解決の外部シンボル __imp_glewExperimental が関数 "public: bool __cdecl Game::Initialize(void)" (?Initialize@Game@@QEAA_NXZ) で参照されました
+InputSystem.obj : error LNK2019: 未解決の外部シンボル SDL_GetKeyboardState が関数 "public: bool __cdecl InputSystem::Initialize(void)" (?Initialize@InputSystem@@QEAA_NXZ) で参照されました
+Renderer.obj : error LNK2019: 未解決の外部シンボル SDL_DestroyWindow が関数 "public: static void __cdecl Renderer::Termination(void)" (?Termination@Renderer@@SAXXZ) で参照されました
+Renderer.obj : error LNK2019: 未解決の外部シンボル SDL_GL_SwapWindow が関数 "public: static void __cdecl Renderer::Draw(void)" (?Draw@Renderer@@SAXXZ) で参照されました
+Renderer.obj : error LNK2019: 未解決の外部シンボル SDL_CreateRenderer が関数 "public: static bool __cdecl Renderer::Initialize(void)" (?Initialize@Renderer@@SA_NXZ) で参照されました
+Renderer.obj : error LNK2019: 未解決の外部シンボル SDL_DestroyRenderer が関数 "public: static void __cdecl Renderer::Termination(void)" (?Termination@Renderer@@SAXXZ) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewActiveTexture が関数 "public: void __cdecl Shader::SetTexture(unsigned int,unsigned int,unsigned int)" (?SetTexture@Shader@@QEAAXIII@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewAttachShader が関数 "public: bool __cdecl Shader::Load(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?Load@Shader@@QEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewCompileShader が関数 "private: bool __cdecl Shader::CompileShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,unsigned int,unsigned int &)" (?CompileShader@Shader@@AEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@IAEAI@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewCreateProgram が関数 "public: bool __cdecl Shader::Load(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?Load@Shader@@QEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewCreateShader が関数 "private: bool __cdecl Shader::CompileShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,unsigned int,unsigned int &)" (?CompileShader@Shader@@AEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@IAEAI@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewDeleteProgram が関数 "public: void __cdecl Shader::Unload(void)" (?Unload@Shader@@QEAAXXZ) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewDeleteShader が関数 "public: void __cdecl Shader::Unload(void)" (?Unload@Shader@@QEAAXXZ) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewGetProgramInfoLog が関数 "private: bool __cdecl Shader::IsValidProgram(void)" (?IsValidProgram@Shader@@AEAA_NXZ) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewGetProgramiv が関数 "private: bool __cdecl Shader::IsValidProgram(void)" (?IsValidProgram@Shader@@AEAA_NXZ) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewGetShaderInfoLog が関数 "private: bool __cdecl Shader::IsCompiled(unsigned int)" (?IsCompiled@Shader@@AEAA_NI@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewGetShaderiv が関数 "private: bool __cdecl Shader::IsCompiled(unsigned int)" (?IsCompiled@Shader@@AEAA_NI@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewGetUniformLocation が関数 "public: void __cdecl Shader::SetIntUniform(char const *,int)" (?SetIntUniform@Shader@@QEAAXPEBDH@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewLinkProgram が関数 "public: bool __cdecl Shader::Load(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?Load@Shader@@QEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewShaderSource が関数 "private: bool __cdecl Shader::CompileShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,unsigned int,unsigned int &)" (?CompileShader@Shader@@AEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@IAEAI@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewUniform1i が関数 "public: void __cdecl Shader::SetIntUniform(char const *,int)" (?SetIntUniform@Shader@@QEAAXPEBDH@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewUniformMatrix4fv が関数 "public: void __cdecl Shader::SetMatrixUniform(char const *,class Matrix4 const &)" (?SetMatrixUniform@Shader@@QEAAXPEBDAEBVMatrix4@@@Z) で参照されました
+Shader.obj : error LNK2019: 未解決の外部シンボル __imp___glewUseProgram が関数 "public: void __cdecl Shader::SetActive(void)" (?SetActive@Shader@@QEAAXXZ) で参照されました
+Texture.obj : error LNK2019: 未解決の外部シンボル SDL_FreeSurface が関数 "public: bool __cdecl Texture::Load(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?Load@Texture@@QEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) で参照されました
+Texture.obj : error LNK2019: 未解決の外部シンボル IMG_Load が関数 "public: bool __cdecl Texture::Load(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?Load@Texture@@QEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) で参照されました
+VertexArray.obj : error LNK2019: 未解決の外部シンボル __imp___glewBindBuffer が関数 "public: __cdecl VertexArray::VertexArray(void const *,unsigned int,unsigned int const *,unsigned int,enum VertexArray::Layout)" (??0VertexArray@@QEAA@PEBXIPEBIIW4Layout@0@@Z) で参照されました
+VertexArray.obj : error LNK2019: 未解決の外部シンボル __imp___glewBufferData が関数 "public: __cdecl VertexArray::VertexArray(void const *,unsigned int,unsigned int const *,unsigned int,enum VertexArray::Layout)" (??0VertexArray@@QEAA@PEBXIPEBIIW4Layout@0@@Z) で参照されました
+VertexArray.obj : error LNK2019: 未解決の外部シンボル __imp___glewDeleteBuffers が関数 "public: __cdecl VertexArray::~VertexArray(void)" (??1VertexArray@@QEAA@XZ) で参照されました
+VertexArray.obj : error LNK2019: 未解決の外部シンボル __imp___glewGenBuffers が関数 "public: __cdecl VertexArray::VertexArray(void const *,unsigned int,unsigned int const *,unsigned int,enum VertexArray::Layout)" (??0VertexArray@@QEAA@PEBXIPEBIIW4Layout@0@@Z) で参照されました
+VertexArray.obj : error LNK2019: 未解決の外部シンボル __imp___glewEnableVertexAttribArray が関数 "private: void __cdecl VertexArray::IfPosNormSkinTex(unsigned int)" (?IfPosNormSkinTex@VertexArray@@AEAAXI@Z) で参照されました
+VertexArray.obj : error LNK2019: 未解決の外部シンボル __imp___glewVertexAttribPointer が関数 "private: void __cdecl VertexArray::IfPosNormSkinTex(unsigned int)" (?IfPosNormSkinTex@VertexArray@@AEAAXI@Z) で参照されました
+VertexArray.obj : error LNK2019: 未解決の外部シンボル __imp___glewVertexAttribIPointer が関数 "private: void __cdecl VertexArray::IfPosNormSkinTex(unsigned int)" (?IfPosNormSkinTex@VertexArray@@AEAAXI@Z) で参照されました
+VertexArray.obj : error LNK2019: 未解決の外部シンボル __imp___glewBindVertexArray が関数 "public: __cdecl VertexArray::VertexArray(void const *,unsigned int,unsigned int const *,unsigned int,enum VertexArray::Layout)" (??0VertexArray@@QEAA@PEBXIPEBIIW4Layout@0@@Z) で参照されました
+VertexArray.obj : error LNK2019: 未解決の外部シンボル __imp___glewDeleteVertexArrays が関数 "public: __cdecl VertexArray::~VertexArray(void)" (??1VertexArray@@QEAA@XZ) で参照されました
+VertexArray.obj : error LNK2019: 未解決の外部シンボル __imp___glewGenVertexArrays が関数 "public: __cdecl VertexArray::VertexArray(void const *,unsigned int,unsigned int const *,unsigned int,enum VertexArray::Layout)" (??0VertexArray@@QEAA@PEBXIPEBIIW4Layout@0@@Z) で参照されました
+MSVCRTD.lib(exe_main.obj) : error LNK2019: 未解決の外部シンボル main が関数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) で参照されました
+..\..\external\SDL\lib\win\x86\SDL2.lib : warning LNK4272: ライブラリのコンピューターの種類 'x86' がターゲットのコンピューターの種類' x64' と競合しています
+..\..\external\SDL\lib\win\x86\SDL2main.lib : warning LNK4272: ライブラリのコンピューターの種類 'x86' がターゲットのコンピューターの種類' x64' と競合しています
+..\..\external\SDL\lib\win\x86\SDL2_ttf.lib : warning LNK4272: ライブラリのコンピューターの種類 'x86' がターゲットのコンピューターの種類' x64' と競合しています
+..\..\external\SDL\lib\win\x86\SDL2_mixer.lib : warning LNK4272: ライブラリのコンピューターの種類 'x86' がターゲットのコンピューターの種類' x64' と競合しています
+..\..\external\SDL\lib\win\x86\SDL2_image.lib : warning LNK4272: ライブラリのコンピューターの種類 'x86' がターゲットのコンピューターの種類' x64' と競合しています
+..\..\external\GLEW\lib\win\x86\glew32.lib : warning LNK4272: ライブラリのコンピューターの種類 'x86' がターゲットのコンピューターの種類' x64' と競合しています
+..\..\external\SOIL\lib\win\x86\SOIL.lib : warning LNK4272: ライブラリのコンピューターの種類 'x86' がターゲットのコンピューターの種類' x64' と競合しています
+C:\Users\student\Desktop\game\Game\x64\Debug\Game.exe : fatal error LNK1120: 45 件の未解決の外部参照

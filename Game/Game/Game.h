@@ -21,24 +21,21 @@ public:
 
 	// SDLが作るウィンドウ
 	static SDL_Window* mWindow;
+	// ウィンドウの横幅
+	static const float MWidth;
+	// ウィンドウの縦幅
+	static const float MHeight;
 
 private:
 	// 入力関連の処理
 	void ProcessInput();
 	// ゲームの更新処理
 	void UpdateGame();
-	// 描画関連の処理
-	void GenerateOutput();
 	// ロードしたデータの解放
 	void UnloadData();
 
 	// コアOpenGLプロファイル設定
 	void OpenGLSetup();
-
-	// ウィンドウの横幅
-	const int MWidth;
-	// ウィンドウの縦幅
-	const int MHeight;
 
 	// コンテクスト
 	SDL_GLContext mContext;
@@ -57,8 +54,7 @@ private:
 	// ゲームを続行するかどうか
 	bool mIsRunningFlag;
 
-	// ゲッター、セッター
-public:
+public: // ゲッター、セッター
 	// 最初のシーンをセット
 	void SetFirstScene(SceneBase* _firstScene) { mNowScene = _firstScene; }
 };

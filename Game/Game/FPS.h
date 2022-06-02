@@ -33,8 +33,7 @@ private:
 	// 現在のフレームのかかった時間
 	float mDeltaTime;
 
-	// ゲッター、セッター
-public:
+public:  // ゲッター、セッター
 	// 現在のフレームにかかった時間（float型）
 	float GetDeltaTime() { return mDeltaTime; }
 };

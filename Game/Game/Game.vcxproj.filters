@@ -46,6 +46,21 @@
     <Filter Include="Shader\GLSL">
       <UniqueIdentifier>{ad24bcb7-239d-476a-b216-e6b13fe5f86a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component\Sprite">
+      <UniqueIdentifier>{4e1c8adc-7269-4612-8ccc-26afd448c202}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Move">
+      <UniqueIdentifier>{a4d5713c-f73c-4e91-a72b-7b04a5788611}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Mesh">
+      <UniqueIdentifier>{3984a176-3e5f-4390-9c39-2b8d76c33d7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Camera">
+      <UniqueIdentifier>{d32039af-8df2-4d40-9387-7850a53cf4ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Mesh">
+      <UniqueIdentifier>{ec7310a0-ffb3-4283-b7c3-04b6ee526526}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Renderer.cpp">
@@ -93,11 +108,23 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Renderer\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteComponent.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
+      <Filter>Component\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveComponent.cpp">
+      <Filter>Component\Move</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Renderer\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Actor\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshComponent.cpp">
+      <Filter>Component\Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,18 +172,36 @@
     <ClInclude Include="Texture.h">
       <Filter>Renderer\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteComponent.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Shader</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Component\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>Component\Move</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Renderer\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Actor\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshComponent.h">
+      <Filter>Component\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\BasicMesh.frag">
+    <None Include="Shaders\Sprite.frag">
       <Filter>Shader\GLSL</Filter>
     </None>
-    <None Include="Shaders\BasicMesh.vert">
+    <None Include="Shaders\Sprite.vert">
+      <Filter>Shader\GLSL</Filter>
+    </None>
+    <None Include="Shaders\Phong.vert">
+      <Filter>Shader\GLSL</Filter>
+    </None>
+    <None Include="Shaders\Phong.frag">
       <Filter>Shader\GLSL</Filter>
     </None>
   </ItemGroup>

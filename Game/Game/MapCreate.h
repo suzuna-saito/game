@@ -47,8 +47,5 @@ private:
 	Vector2 mMapSize;
 	// オブジェクトごとの距離(x,y,z)
 	Vector3 mObjDistance;
-
-	// スケール
-	const float MScale;
 };
 

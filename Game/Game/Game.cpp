@@ -1,6 +1,8 @@
 #include "pch.h"
 
 SDL_Window* Game::mWindow = nullptr;
+const float Game::MWidth = 1920.0f;
+const float Game::MHeight = 1080.0f;
 
 Game::Game()
 	: mIsRunningFlag(true)
@@ -9,8 +11,6 @@ Game::Game()
 	, mContext(nullptr)
 	, mNowScene(NULL)
 	, mTmpScene(NULL)
-	, MWidth(1920)
-	, MHeight(1080)
 {
 }
 
@@ -21,7 +21,7 @@ bool Game::Initialize()
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | 
 		SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC) != 0)
 	{
-		SDL_Log("SDLを初期化できません : %s", SDL_GetError());
+		printf("SDLを初期化できません : %s", SDL_GetError());
 		return false;
 	}
 
@@ -29,7 +29,7 @@ bool Game::Initialize()
 	mInputSystem = new InputSystem();
 	if (!mInputSystem->Initialize())
 	{
-		SDL_Log("インプットシステムの初期化に失敗しました");
+		printf("インプットシステムの初期化に失敗しました");
 		return false;
 	}
 
@@ -37,11 +37,11 @@ bool Game::Initialize()
 	// 作成前に色深度などの属性を設定する
 	OpenGLSetup();
 	// タイトル、x座標、y座標、幅、高さ、フラグ
-	mWindow = SDL_CreateWindow("Game", 0, 0, MWidth, MHeight, SDL_WINDOW_OPENGL);
+	mWindow = SDL_CreateWindow("Game", 0, 0, (int)MWidth, (int)MHeight, SDL_WINDOW_OPENGL);
 	// mWindowが、nullptrだったら
 	if (!mWindow)
 	{
-		SDL_Log("ウィンドウの作成に失敗しました : %s", SDL_GetError());
+		printf("ウィンドウの作成に失敗しました : %s", SDL_GetError());
 		return false;
 	}
 
@@ -52,7 +52,7 @@ bool Game::Initialize()
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
 	{
-		SDL_Log("GLEWの初期化に失敗しました.");
+		printf("GLEWの初期化に失敗しました.");
 		return false;
 	}
 
@@ -63,7 +63,7 @@ bool Game::Initialize()
 	Renderer::CreateInstance();
 	if (!Renderer::Initialize())
 	{
-		SDL_Log("レンダラーの初期化に失敗しました");
+		printf("レンダラーの初期化に失敗しました\n");
 		Renderer::DeleteInstance();
 		return false;
 	}
@@ -71,8 +71,10 @@ bool Game::Initialize()
 	// FPS管理クラスの初期化
 	mFps = new FPS();
 
-	// オブジェクト管理クラスの初期化
+	// オブジェクト管理クラスの作成
 	ActorManager::CreateInstance();
+	// カメラクラスの作成
+	Camera::CreateInstance();
 
 	return true;
 }
@@ -107,7 +109,7 @@ void Game::GameLoop()
 		// ゲームの更新処理
 		UpdateGame();
 		// 現在のシーンの描画処理
-		GenerateOutput();
+		Renderer::Draw();
 		// FPSの更新処理
 		mFps->Update();
 	}
@@ -118,10 +120,9 @@ void Game::Termination()
 	// データのアンロード
 	UnloadData();
 
-	// @@@
-	// スタティッククラスの解放処理
-	ActorManager::DeleteInstance();
+	// 実体を一つしか持たないクラスの解放処理
 	Renderer::DeleteInstance();
+	ActorManager::DeleteInstance();
 
 	// クラスの解放処理
 	delete mFps;
@@ -172,11 +173,6 @@ void Game::UpdateGame()
 
 	// アクターの更新処理
 	ActorManager::UpdateActor(deltaTime);
-}
-
-void Game::GenerateOutput()
-{
-	Renderer::Draw();
 }
 
 void Game::UnloadData()

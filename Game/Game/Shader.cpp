@@ -45,6 +45,30 @@ void Shader::SetActive()
 	glUseProgram(mShaderProgram);
 }
 
+void Shader::SetTexture(GLenum _texture, GLenum _target, GLuint _textureID)
+{
+	// テクスチャの下地の色を設定
+	glActiveTexture(_texture);
+	// テクスチャをアクティブにする
+	glBindTexture(_target, _textureID);
+}
+
+void Shader::SetIntUniform(const char* _name, const int _value)
+{
+	// この名前のuniformを探す
+	GLuint loc = glGetUniformLocation(mShaderProgram, _name);
+	//シェーダーにintデータを送る
+	glUniform1i(loc, _value);
+}
+
+void Shader::SetMatrixUniform(const char* _name, const Matrix4& _matrix)
+{
+	// この名前のuniformを探す
+	GLuint loc = glGetUniformLocation(mShaderProgram, _name);
+	// シェーダーに行列データを送る
+	glUniformMatrix4fv(loc, 1, GL_TRUE, _matrix.GetAsFloatPtr());
+}
+
 bool Shader::CompileShader(const string& _fileName, GLenum _shaderType, GLuint& _outShader)
 {
 	// ファイル読み込み
@@ -68,13 +92,13 @@ bool Shader::CompileShader(const string& _fileName, GLenum _shaderType, GLuint& 
 		// シェーダーが正常にコンパイルされたかどうか
 		if (!IsCompiled(_outShader))
 		{
-			SDL_Log("シェーダー %s のコンパイルに失敗しました", _fileName.c_str());
+			printf("シェーダー %s のコンパイルに失敗しました\n", _fileName.c_str());
 			return false;
 		}
 	}
 	else
 	{
-		SDL_Log("シェーダーファイル %s が見つかりません", _fileName.c_str());
+		printf("シェーダーファイル %s が見つかりません\n", _fileName.c_str());
 		return false;
 	}
 
@@ -94,7 +118,7 @@ bool Shader::IsCompiled(GLuint _shader)
 		memset(buffer, 0, 512);
 		// コンパイルエラーメッセージを取得
 		glGetShaderInfoLog(_shader, 511, nullptr, buffer);
-		SDL_Log("GLSLのコンパイルが失敗しました : \n%s", buffer);
+		printf("GLSLのコンパイルが失敗しました : \n%s", buffer);
 		return false;
 	}
 
@@ -113,7 +137,7 @@ bool Shader::IsValidProgram()
 		memset(buffer, 0, 512);
 		// エラーメッセージを取得
 		glGetProgramInfoLog(mShaderProgram, 511, nullptr, buffer);
-		SDL_Log("GLSLのリンクが失敗しました : \n%s", buffer);
+		printf("GLSLのリンクが失敗しました : \n%s", buffer);
 		return false;
 	}
 

@@ -7,6 +7,7 @@ Renderer::Renderer()
 	: mSdlRenderer(nullptr)
 	, mSpriteVerts(nullptr)
 	, mSpriteShader(nullptr)
+	, mMeshShader(nullptr)
 {
 }
 
@@ -44,7 +45,7 @@ bool Renderer::Initialize()
 	// シェーダーのロード
 	if (!mRenderer->LoadShaders())
 	{
-		SDL_Log("シェーダーのロードに失敗しました");
+		printf("シェーダーのロードに失敗しました\n");
 		return false;
 	}
 
@@ -56,35 +57,79 @@ bool Renderer::Initialize()
 
 void Renderer::Draw()
 {
-	//@@@(設定しなかったら黒になる)
-	// クリアカラーを好きなように設定
-	glClearColor(0.2f, 0.0f, 0.4f, 0.5f);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+
 	// カラーバッファをクリア
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	// @@@
-	// シーンを描画
+	// Spriteの描画。αブレンドを有効にする
+	glEnable(GL_BLEND);
+	glBlendFunc(
+		GL_SRC_ALPHA,             // srcFactorはsrcAlpha
+		GL_ONE_MINUS_SRC_ALPHA);  // dstFactorは(1-srcAlpha)
+
+	// mSpritesの中にデータがあれば
+	if (mRenderer->mSprites.size() != 0)
+	{
+		// スプライトの描画
+		mRenderer->SpriteDraw();
+	}
+
+	// デプスバッファ法有効 / αブレンディング無効
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_BLEND);
+
+	// メッシュコンポーネントの描画
+	// 基本的なメッシュシェーダーをアクティブにする
+	mRenderer->mMeshShader->SetActive();
+	// ビュー射影行列を更新する
+	mRenderer->mMeshShader->SetMatrixUniform("uViewProj", mRenderer->mView * mRenderer->mProjection);
+	// @@@ シェーダーに渡すライティング情報を更新する
+	// 全てのメッシュの描画
+	for (auto mc : mRenderer->mMeshComponents)
+	{
+		mc->Draw(mRenderer->mMeshShader);
+	}
 
 	// バッファを交換、これでシーンが表示される
 	SDL_GL_SwapWindow(Game::mWindow);
 }
 
-void Renderer::UnloadData()
+void Renderer::SpriteDraw()
 {
-	delete mRenderer->mSpriteVerts;
+	// スプライトシェーダーをアクティブにする
+	// スプライト頂点配列を有効にする
+	mSpriteShader->SetActive();
+	mSpriteVerts->SetActive();
+	// 全てのスプライトの描画
+	for (auto sprite : mSprites)
+	{
+		sprite->Draw(mSpriteShader);
+	}
 }
 
 bool Renderer::LoadShaders()
 {
 	// スプライトシェーダーの生成
 	mSpriteShader = new Shader();
-	// @@@ シェーダーの名前変更するかも？
-	if (!mSpriteShader->Load("Shaders/BasicMesh.vert", "Shaders/BasicMesh.frag"))
+	if (!mSpriteShader->Load("Shaders/Sprite.vert", "Shaders/Sprite.frag"))
 	{
 		return false;
 	}
-
 	mSpriteShader->SetActive();
+	// ビュー射影行列を作成し、設定
+	Matrix4 viewProj = Matrix4::CreateSimpleViewProj(Game::MWidth, Game::MHeight);
+	mSpriteShader->SetMatrixUniform("uViewProj", viewProj);
+
+	// 標準メッシュシェーダーの作成
+	mMeshShader = new Shader();
+	if (!mMeshShader->Load("Shaders/Phong.vert", "Shaders/Phong.frag"))
+	{
+		return false;
+	}
+	mMeshShader->SetActive();
+	// ビュー射影行列を作成し、設定
+	mMeshShader->SetMatrixUniform("uViewProj", mView * mProjection);
 
 	return true;
 }
@@ -109,44 +154,6 @@ void Renderer::CreateSpriteVerts()
 	mSpriteVerts = new VertexArray(vertices, 4, indices, 6);
 }
 
-void Renderer::RemoveSprite(SpriteComponent* _spriteComponent)
-{
-	auto iter = find(mRenderer->mSprites.begin(), mRenderer->mSprites.end(), _spriteComponent);
-	mRenderer->mSprites.erase(iter);
-}
-
-SDL_Texture* Renderer::GetTexture(const string& _fileName)
-{
-	Texture* texture = nullptr;
-
-	// 現在の要素
-	SDL_Texture* nowTexture = nullptr;
-	// すでに作成されていないか調べる
-	auto itr = mTextures.find(_fileName);
-	if (itr != mTextures.end())
-	{
-		nowTexture = itr->second;
-	}
-	// 作成済みでない場合、新しくテクスチャを作成
-	else
-	{
-		texture = new Texture();
-		if (texture->Load(_fileName))
-		{
-			// mTexturesに要素を構築
-			mTextures.emplace(_fileName, nowTexture);
-		}
-		// テクスチャの読み込みが出来なかったら
-		else
-		{
-			delete texture;
-			texture = nullptr;
-		}
-	}
-
-	return nowTexture;
-}
-
 void Renderer::AddSprite(SpriteComponent* _spriteComponent)
 {
 	// ソート済みの配列で挿入点を見つける
@@ -167,8 +174,115 @@ void Renderer::AddSprite(SpriteComponent* _spriteComponent)
 	mRenderer->mSprites.insert(iter, _spriteComponent);
 }
 
+void Renderer::RemoveSprite(SpriteComponent* _spriteComponent)
+{
+	auto iter = find(mRenderer->mSprites.begin(), mRenderer->mSprites.end(), _spriteComponent);
+	mRenderer->mSprites.erase(iter);
+}
+
+void Renderer::AddMeshComponent(MeshComponent* _meshComponent)
+{
+	// スケルトンデータを用いる場合
+	if (_meshComponent->GetIsSkeltal())
+	{
+		// スケルタルメッシュコンポーネント
+	}
+	else
+	{
+		mRenderer->mMeshComponents.emplace_back(_meshComponent);
+	}
+}
+
+void Renderer::RemoveMeshcomponent(MeshComponent* _meshComponent)
+{
+	// スケルトンデータを用いる場合
+	if (_meshComponent->GetIsSkeltal())
+	{
+		// スケルタルメッシュコンポーネント
+	}
+	else
+	{
+		auto iter = find(mRenderer->mMeshComponents.begin(), mRenderer->mMeshComponents.end(),
+			_meshComponent);
+		mRenderer->mMeshComponents.erase(iter);
+	}
+
+}
+
+Texture* Renderer::GetTexture(const string& _fileName)
+{
+	Texture* texture = nullptr;
+
+	// すでに作成されていないか調べる
+	auto itr = mRenderer->mTextures.find(_fileName);
+	if (itr != mRenderer->mTextures.end())
+	{
+		texture = itr->second;
+	}
+	// 作成済みでない場合、新しくテクスチャを作成
+	else
+	{
+		texture = new Texture();
+		if (texture->Load(_fileName))
+		{
+			// mTexturesに要素を構築
+			mRenderer->mTextures.emplace(_fileName, texture);
+		}
+		// テクスチャの読み込みが出来なかったら
+		else
+		{
+			delete texture;
+			texture = nullptr;
+		}
+	}
+
+	return texture;
+}
+
+Mesh* Renderer::GetMesh(const string& _fileName)
+{
+	Mesh* m = nullptr;
+
+	// すでに作成されていないか調べる
+	auto itr = mRenderer->mMeshes.find(_fileName);
+	if (itr != mRenderer->mMeshes.end())
+	{
+		m = itr->second;
+	}
+	// 作成済みでない場合、新しくメッシュを作成
+	else
+	{
+		m = new Mesh();
+		if (m->Load(_fileName, mRenderer))
+		{
+			mRenderer->mMeshes.emplace(_fileName, m);
+		}
+		else
+		{
+			delete m;
+			m = nullptr;
+		}
+	}
+
+	return m;
+}
+
 void Renderer::Termination()
 {
+	delete mRenderer->mSpriteVerts;
+
+	mRenderer->mSpriteShader->Unload();
+	delete mRenderer->mSpriteShader;
+
+	mRenderer->mMeshShader->Unload();
+	delete mRenderer->mMeshShader;
+
 	SDL_DestroyRenderer(mRenderer->mSdlRenderer);
 	SDL_DestroyWindow(Game::mWindow);
+}
+
+
+void Renderer::UnloadData()
+{
+	
 }

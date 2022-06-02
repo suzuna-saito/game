@@ -22,9 +22,6 @@ public:
 	// ロードしたシェーダーを削除
 	void Unload();
 
-	// シェーダープログラムをアクティブに設定
-	void SetActive();
-
 private:
 	/// <summary>
 	/// シェーダーをコンパイルする
@@ -52,4 +49,29 @@ private:
 	GLuint mFragShader;
 	// シェーダープログラム（頂点シェーダーとフラグメントシェーダーを結合）
 	GLuint mShaderProgram;
+
+public:  // セッター、ゲッター
+	// シェーダープログラムをアクティブに設定
+	void SetActive();
+
+	/// <summary>
+	/// テクスチャをセットし、アクティブにする
+	/// </summary>
+	/// <param name="_texture">アクティブにするテクスチャユニット</param>
+	/// <param name="_target">テクスチャをバインドする対象</param>
+	/// <param name="_textureID">テクスチャの名称</param>
+	void SetTexture(GLenum _texture, GLenum _target, GLuint _textureID);
+
+	/// <summary>
+	/// intのuniform変数を設定する
+	/// </summary>
+	/// <param name="_Name">設定するuniform変数名</param>
+	/// <param name="_Value">設定するint</param>
+	void SetIntUniform(const char* _name, const int _value);
+	/// <summary>
+	/// 行列のuniform変数を設定する
+	/// </summary>
+	/// <param name="_name">設定するuniform変数名</param>
+	/// <param name="_matrix">設定する行列</param>
+	void SetMatrixUniform(const char* _name, const Matrix4& _matrix);
 };

@@ -18,9 +18,23 @@ SpriteComponent::~SpriteComponent()
 
 void SpriteComponent::Draw(Shader* _shader)
 {
-	glClearColor(0.86f, 0.86f, 0.86f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	if (mTexture)
+	{
+		// テクスチャの幅と高さで矩形をスケーリング
+		Matrix4 scaleMat = Matrix4::CreateScale(
+			static_cast<float>(mTexWidth),
+			static_cast<float>(mTexHeight),
+			1.0f);
+		// アクターのワールド行列と掛けてこのスプライトに必要なワールド行列を作る
+		Matrix4 world = scaleMat * mOwner->GetWorldTransform();
 
-	// 四角形を描画
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		// uWorldTransformの設定
+		_shader->SetMatrixUniform("uWorldTransform", world);
+
+		// テクスチャをセットし、アクティブにする
+		_shader->SetTexture(GL_TEXTURE0, GL_TEXTURE_2D, mTexture->GetTextureID());
+
+		// 矩形を描画
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+	}
 }

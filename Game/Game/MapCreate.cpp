@@ -2,8 +2,7 @@
 
 MapCreate::MapCreate()
 	: mMapSize(Vector2::Zero)
-	, mObjDistance(20.0f,20.0f,20.0f)
-	, MScale(10.0f)
+	, mObjDistance(200.0f,200.0f,200.0f)
 {
 }
 
@@ -40,13 +39,12 @@ void MapCreate::CreateGround()
 
 			// ポジション
 			const Vector3 objPos = Vector3(-mObjDistance.x * ix, mObjDistance.y * iz, 0.0f);
-			// サイズ
-			const Vector3 objSize = Vector3(MScale, MScale, MScale);
 
 			// 割り当てられている数字が1だったら
 			if (name == 1)
 			{
 				// 床の生成
+				new Ground(objPos);
 			}
 		}
 	}
@@ -84,7 +82,7 @@ bool MapCreate::ReadTiledJson(vector<vector<int>>& _mapData, const char* _fileNa
 	}
 
 	// layer内にデータはあるか？
-	rapidjson::Value::ConstMemberIterator itr = layer[layerIndex].FindMember("date");
+	rapidjson::Value::ConstMemberIterator itr = layer[layerIndex].FindMember("data");
 	if (itr == layer[layerIndex].MemberEnd())
 	{
 		printf("レイヤー名:%sにマップデータがありません\n", _layerName);
