@@ -52,6 +52,9 @@ bool Renderer::Initialize()
 	// スプライト用の頂点配列を作成
 	mRenderer->CreateSpriteVerts();
 
+	mProjection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f),
+		mScreenWidth, mScreenHeight, 25.0f, 10000.0f);
+
 	return true;
 }
 
