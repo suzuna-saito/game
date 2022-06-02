@@ -92,13 +92,13 @@ bool Shader::CompileShader(const string& _fileName, GLenum _shaderType, GLuint& 
 		// シェーダーが正常にコンパイルされたかどうか
 		if (!IsCompiled(_outShader))
 		{
-			printf("シェーダー %s のコンパイルに失敗しました", _fileName.c_str());
+			printf("シェーダー %s のコンパイルに失敗しました\n", _fileName.c_str());
 			return false;
 		}
 	}
 	else
 	{
-		printf("シェーダーファイル %s が見つかりません", _fileName.c_str());
+		printf("シェーダーファイル %s が見つかりません\n", _fileName.c_str());
 		return false;
 	}
 

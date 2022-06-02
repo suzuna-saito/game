@@ -35,7 +35,7 @@ VertexArray::VertexArray(const void* _verts, unsigned int _numVerts, const unsig
 	// _vertsを頂点バッファにコピーする
 	glBufferData(
 		GL_ARRAY_BUFFER,						// バッファの種類
-		_numVerts * vertexSize * sizeof(float),	// コピーするバイト数
+		_numVerts * vertexSize ,	            // コピーするバイト数
 		_verts,									// コピー元（ポインタ）
 		GL_STATIC_DRAW							// このデータの利用方法
 	);
